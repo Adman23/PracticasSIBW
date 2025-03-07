@@ -2,7 +2,7 @@
 
 
 body{
-    background-color: #ffffff;
+    background-color: #000000;
     color: white;
     /*#ffffff12 --> Este para los contenedores */
 }
@@ -22,7 +22,6 @@ todo: Cambiar el logo y hacer que haga hover cuando pases por encima o similar
 */
 
 header {
-    
 }
 
 .main-title{
@@ -36,7 +35,7 @@ header {
     min-height:10px;
     
     width:80px;
-    height:auto;
+    height:80px;
     border-radius: 10px;
 }
 
