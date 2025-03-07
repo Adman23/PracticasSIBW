@@ -1,0 +1,55 @@
+
+
+
+body{
+    background-color: #ffffff;
+    color: white;
+    /*#ffffff12 --> Este para los contenedores */
+}
+
+/*
+
+todo: Cambiar el logo y hacer que haga hover cuando pases por encima o similar
+      Hacer que el logo lleve a la pagina principal
+      Usar grid para organizar el layout principal
+      Usar flex para las peliculas
+      Terminar la portada
+      Hacer película (copiando parte de portada)
+      Hacer el footer que se pueda scrollear
+      sticky sidebar que se pueda esconder
+      sticky header
+
+*/
+
+header {
+    
+}
+
+.main-title{
+    
+}
+
+.logo {
+    max-width: 100%; /*Esto sirve para que no escale infinito la imagen*/
+    max-height: 100%;
+    min-width:10px; /*Esto es para que no se reduzca mas*/
+    min-height:10px;
+    
+    width:80px;
+    height:auto;
+    border-radius: 10px;
+}
+
+/*Diapositiva 80 de tema 2 htmlcss*/
+/*body p {color: #000000;}*/
+
+
+
+p.right{
+    text-align: right;
+}
+
+p.center{
+    text-align: center;
+}
+
