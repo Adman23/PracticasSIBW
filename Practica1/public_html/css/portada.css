@@ -1,28 +1,6 @@
 
-
-/*
-
-todo: Cambiar el logo y hacer que haga hover cuando pases por encima o similar
-      Hacer que el logo lleve a la pagina principal
-      Usar grid para organizar el layout principal
-      Usar flex para las peliculas
-      Terminar la portada
-      Hacer película (copiando parte de portada)
-      Hacer el footer que se pueda scrollear
-      sticky sidebar que se pueda esconder
-      sticky header
-
-*/
-
-/*Diapositiva 80 de tema 2 htmlcss*/
-/*body p {color: #000000;}*/
-
-
-
-/* GENERAL ELEMENTS */
-
-
-
+/*----------------------------------------------------------------------------*/
+/* Elementos nativos de CSS y HTML */
 
 body{
     background-color: #000000;
@@ -45,18 +23,11 @@ body{
     
 }
 
-
-
-/*
-El header utiliza flexbox para organizar los elementos.
-Tiene 2 elementos, el .logo-box y el #title-menu
-
-*/
 header {
     background-color: #121110;
     border-radius: 10px;
     border: 1px solid rgb(60,65,73);
-    padding: 5px;
+    
     grid-area: header;
     
     margin:10px;
@@ -68,7 +39,6 @@ header {
 
 }
 
-
 main{
     padding: 5px;
     border: 1px solid rgb(60,65,73);
@@ -77,11 +47,52 @@ main{
     margin-right: 10px;
     
     overflow-y: scroll;
-    
     grid-area: main;
+    
     
 }
 
+
+.film a {
+        min-width: 75px;
+    max-width: 150px;
+    height: 225px;
+}
+
+.film-list{
+    padding:20px;
+    margin:20px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(75px,150px));
+    grid-template-rows:    repeat(auto-fill, 250px);
+    gap:30px;
+}
+
+.film{
+    min-width: 75px;
+    max-width: 150px;
+    height: 250px;
+    text-align: center;
+    text-spacing: auto;
+    font-size: 1.25rem;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.cover{
+        min-width: 75px;
+    max-width: 150px;
+    height: 225px;
+    padding:0;
+    margin:0;
+}
+
+.film-name{
+    height: 25px;
+    padding:0;
+    margin:0;
+}
 
 footer{
     padding: 5px;
@@ -91,31 +102,133 @@ footer{
     margin-right: 10px;
     margin-bottom: 10px;
     
-   
+    text-align: center;
     grid-area: footer;
     
 }
 
 
-/* CLASSES AND ID ELEMENTS */
 
-/*--------------Logo -> header------------------------------------------------*/
+
+aside.sidebar {
+    border: 1px solid rgb(75,82,92);
+    background-color: #121110;
+    border-radius: 10px;    
+    margin:10px;
+    margin-right: 0;
+    
+    grid-area: aside;
+    
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    flex-grow: 1;
+}
+
+/*----------------------------------------------------------------------------*/
+
+
+
+/*----------------------------------------------------------------------------*/
+/* Menús y listas */
+
+/* Menú de arriba */
+ul.horizontal-menu {
+  list-style-type: none; 
+  font-size: 1.30rem;
+  margin: 0;
+  padding: 0;
+  height:50px;
+  
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+
+li.horizontal-menu-item {
+    display: flex;
+    align-items: center;   
+    float:left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+li.horizontal-menu-item:hover{
+    background-color: lightslategray;
+}
+
+a.menu-link {
+    display:block;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+/* Menú del aside */
+ul.side-menu {
+    list-style-type:none;
+    text-align: center;
+    font-size: 1.30rem;
+    margin:0;
+    padding:0;
+    width:100%;
+    
+}
+
+li.vertical-menu-item{
+    padding: 20px;
+}
+
+li.vertical-menu-item:hover{
+    background-color: lightslategray;
+}
+
+#current-page{
+    background-color: #3366ff;
+}
+
+#current-page:hover{
+    background-color: #3366ff;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Imagenes, logos*/
+
+
 .logo-box{
     flex-grow: 0;
-    margin-right: auto;
+    
 }
 .logo {
     width:50px;
     height:50px;
     border-radius: 10px;
 }
+
+.logos-redes{
+    padding: 5px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:auto;
+    margin-bottom: 20px;
+}
+
+.logo-red {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+
 /*----------------------------------------------------------------------------*/
-
-
-
-/*-----------Title & main-menu -> header--------------------------------------*/
-/* Utilizamos flex para organizar el titulo y el menú, ademas de ajustarlo
-a todo el espacio posible del header y centrar el texto*/
+/* Títulos y textos */
 #title-menu {
     display:flex;
     flex-direction:row-reverse;
@@ -128,47 +241,44 @@ a todo el espacio posible del header y centrar el texto*/
 }
 
 .main-title{
-    border: 3px solid grey;
     padding:0;
     margin:15px;
-    margin-left: 30px;
+    margin-right: 40px;
     text-shadow: 2px 1px 3px blue;
     
     
     font-family: FreeMono, monospace, serif;
     font-weight: bold;
-    font-size:50px;
+    font-size:3.25rem;
 }
 
-.main-menu {
-    max-height: 70px;
-    border: 3px solid grey;
+.header-menu {
+    margin-left: 40px;
+    margin-right: auto;
 }
+
+h2.title{
+    padding:5px;
+    text-align:center;
+    font-family: FreeMono, monospace, serif;
+    font-weight: bold;
+    font-size:1.75rem;
+    margin-bottom: 35px;
+}
+
+
+footer p {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size:1rem;
+}
+
+footer h2 {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size:1.35rem;
+}
+
 /*----------------------------------------------------------------------------*/
 
 
-aside.sidebar {
-    padding: 5px;
-    border: 1px solid rgb(75,82,92);
-    background-color: #121110;
-    border-radius: 10px;    
-    margin:10px;
-    margin-right: 0;
-    
-    grid-area: aside;
-}
-
-
-
-
-/* SPECIFIC PROPERTIES */
-
-/*
-p.right{
-    text-align: right;
-}
-
-p.center{
-    text-align: center;
-}
-*/
