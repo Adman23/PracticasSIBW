@@ -1,12 +1,5 @@
 
 
-
-body{
-    background-color: #ffffff;
-    color: white;
-    /*#ffffff12 --> Este para los contenedores */
-}
-
 /*
 
 todo: Cambiar el logo y hacer que haga hover cuando pases por encima o similar
@@ -21,30 +14,156 @@ todo: Cambiar el logo y hacer que haga hover cuando pases por encima o similar
 
 */
 
-header {
-    
-}
-
-.main-title{
-    
-}
-
-.logo {
-    max-width: 100%; /*Esto sirve para que no escale infinito la imagen*/
-    max-height: 100%;
-    min-width:10px; /*Esto es para que no se reduzca mas*/
-    min-height:10px;
-    
-    width:80px;
-    height:auto;
-    border-radius: 10px;
-}
-
 /*Diapositiva 80 de tema 2 htmlcss*/
 /*body p {color: #000000;}*/
 
 
 
+/* GENERAL ELEMENTS */
+
+
+
+
+body{
+    background-color: #000000;
+    color: white;
+    margin:0;
+    padding:0;
+    
+    display:grid;
+    grid-template-areas:
+            "aside header"
+            "aside main"
+            "aside footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+    gap: 15px;
+    height:100vh;
+    
+    font-size: 1.15rem; /* Esto multiplica por 1.15 por 16px*/
+    font-family: system-ui, sans-serif, serif;
+    
+}
+
+
+
+/*
+El header utiliza flexbox para organizar los elementos.
+Tiene 2 elementos, el .logo-box y el #title-menu
+
+*/
+header {
+    background-color: #121110;
+    border-radius: 10px;
+    border: 1px solid rgb(60,65,73);
+    padding: 5px;
+    grid-area: header;
+    
+    margin:10px;
+    margin-bottom: 0;
+    margin-left: 0;
+    
+    display: flex;
+    align-items:center;
+
+}
+
+
+main{
+    padding: 5px;
+    border: 1px solid rgb(60,65,73);
+    background-color: #121110;
+    border-radius: 10px;
+    margin-right: 10px;
+    
+    overflow-y: scroll;
+    
+    grid-area: main;
+    
+}
+
+
+footer{
+    padding: 5px;
+    border: 1px solid rgb(60,65,73);
+    background-color: #121110;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    
+   
+    grid-area: footer;
+    
+}
+
+
+/* CLASSES AND ID ELEMENTS */
+
+/*--------------Logo -> header------------------------------------------------*/
+.logo-box{
+    flex-grow: 0;
+    margin-right: auto;
+}
+.logo {
+    width:50px;
+    height:50px;
+    border-radius: 10px;
+}
+/*----------------------------------------------------------------------------*/
+
+
+
+/*-----------Title & main-menu -> header--------------------------------------*/
+/* Utilizamos flex para organizar el titulo y el menú, ademas de ajustarlo
+a todo el espacio posible del header y centrar el texto*/
+#title-menu {
+    display:flex;
+    flex-direction:row-reverse;
+    flex-grow:1;
+    text-align: center;
+    max-height: 50px;
+    
+    align-items:center;
+    
+}
+
+.main-title{
+    border: 3px solid grey;
+    padding:0;
+    margin:15px;
+    margin-left: 30px;
+    text-shadow: 2px 1px 3px blue;
+    
+    
+    font-family: FreeMono, monospace, serif;
+    font-weight: bold;
+    font-size:50px;
+}
+
+.main-menu {
+    max-height: 70px;
+    border: 3px solid grey;
+}
+/*----------------------------------------------------------------------------*/
+
+
+aside.sidebar {
+    padding: 5px;
+    border: 1px solid rgb(75,82,92);
+    background-color: #121110;
+    border-radius: 10px;    
+    margin:10px;
+    margin-right: 0;
+    
+    grid-area: aside;
+}
+
+
+
+
+/* SPECIFIC PROPERTIES */
+
+/*
 p.right{
     text-align: right;
 }
@@ -52,4 +171,4 @@ p.right{
 p.center{
     text-align: center;
 }
-
+*/
