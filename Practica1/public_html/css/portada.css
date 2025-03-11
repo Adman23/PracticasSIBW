@@ -14,14 +14,34 @@ body{
             "aside main"
             "aside footer";
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 200px 1fr;
     gap: 15px;
     height:100vh;
+    
+    overflow:hidden;
     
     font-size: 1.15rem; /* Esto multiplica por 1.15 por 16px*/
     font-family: system-ui, sans-serif, serif;
     
 }
+
+@media screen and (min-width:900px){
+    body {
+        grid-template-columns: 200px 1fr;
+    }
+    aside.sidebar{
+        visibility:visible;
+    }
+}
+
+@media screen and (max-width:900px){
+    body {
+        grid-template-columns: 0% 100%;
+    }
+    aside.sidebar{
+        visibility: hidden;
+    }
+}
+
 
 header {
     background-color: #121110;
@@ -52,48 +72,6 @@ main{
     
 }
 
-
-.film a {
-        min-width: 75px;
-    max-width: 150px;
-    height: 225px;
-}
-
-.film-list{
-    padding:20px;
-    margin:20px;
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(75px,150px));
-    grid-template-rows:    repeat(auto-fill, 250px);
-    gap:30px;
-}
-
-.film{
-    min-width: 75px;
-    max-width: 150px;
-    height: 250px;
-    text-align: center;
-    text-spacing: auto;
-    font-size: 1.25rem;
-    
-    display: flex;
-    flex-direction: column;
-}
-
-.cover{
-        min-width: 75px;
-    max-width: 150px;
-    height: 225px;
-    padding:0;
-    margin:0;
-}
-
-.film-name{
-    height: 25px;
-    padding:0;
-    margin:0;
-}
-
 footer{
     padding: 5px;
     border: 1px solid rgb(60,65,73);
@@ -106,9 +84,6 @@ footer{
     grid-area: footer;
     
 }
-
-
-
 
 aside.sidebar {
     border: 1px solid rgb(75,82,92);
@@ -133,6 +108,24 @@ aside.sidebar {
 /* Menús y listas */
 
 /* Menú de arriba */
+
+/*title-menu es un div que contiene el titulo principal junto al nav menu*/
+#title-menu {
+    display:flex;
+    flex-direction:row-reverse;
+    flex-grow:1;
+    text-align: center;
+    max-height: 50px;
+    
+    align-items:center;
+    
+}
+
+nav.header-menu {
+    margin-left: 40px;
+    margin-right: auto;
+}
+
 ul.horizontal-menu {
   list-style-type: none; 
   font-size: 1.30rem;
@@ -143,6 +136,8 @@ ul.horizontal-menu {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  
+  overflow:hidden;
 
 }
 
@@ -229,16 +224,6 @@ li.vertical-menu-item:hover{
 
 /*----------------------------------------------------------------------------*/
 /* Títulos y textos */
-#title-menu {
-    display:flex;
-    flex-direction:row-reverse;
-    flex-grow:1;
-    text-align: center;
-    max-height: 50px;
-    
-    align-items:center;
-    
-}
 
 .main-title{
     padding:0;
@@ -249,13 +234,9 @@ li.vertical-menu-item:hover{
     
     font-family: FreeMono, monospace, serif;
     font-weight: bold;
-    font-size:3.25rem;
+    font-size: 3.8vw;
 }
 
-.header-menu {
-    margin-left: 40px;
-    margin-right: auto;
-}
 
 h2.title{
     padding:5px;
@@ -282,3 +263,49 @@ footer h2 {
 /*----------------------------------------------------------------------------*/
 
 
+/*----------------------------------------------------------------------------*/
+/* Contenido de la página en el main */
+
+
+ul.film-list{
+    list-style-type: none;
+    padding:20px;
+    margin:20px;
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(75px,150px));
+    grid-template-rows:    repeat(auto-fill, 250px);
+    gap:40px;
+}
+
+li.film{
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.film a {
+    text-decoration: none;
+    color: white;
+    height: 250px;
+    
+    /*Corregir 5px extraños que aparecian como espacio*/
+    display:flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+img.cover{
+    min-width: 75px;
+    max-width: 150px;
+    height: 225px;
+    padding:0;
+    margin:0;
+}
+
+p.film-name{
+    min-width: 75px;
+    max-width: 150px;
+    height: 25px;
+    margin:0;
+    padding:0;
+    
+}
