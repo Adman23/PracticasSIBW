@@ -9,15 +9,10 @@ body{
     padding:0;
     
     display:grid;
-    grid-template-areas:
-            "aside header"
-            "aside main"
-            "aside footer";
-    grid-template-rows: auto 1fr auto;
+    
     gap: 15px;
     height:100vh;
     
-    overflow:hidden;
     
     font-size: 1.15rem; /* Esto multiplica por 1.15 por 16px*/
     font-family: system-ui, sans-serif, serif;
@@ -27,18 +22,25 @@ body{
 @media screen and (min-width:900px){
     body {
         grid-template-columns: 200px 1fr;
-    }
-    aside.sidebar{
-        visibility:visible;
+        grid-template-areas:
+                        "aside header"
+                        "aside main"
+                        "aside footer";
+        grid-template-rows: auto 1fr auto;
+        overflow:hidden;
     }
 }
 
 @media screen and (max-width:900px){
     body {
-        grid-template-columns: 0% 100%;
-    }
-    aside.sidebar{
-        visibility: hidden;
+        overflow:scroll;
+        grid-template-columns: 100%;
+        grid-template-areas:
+                        "header"
+                        "main"
+                        "aside"
+                        "footer";
+        grid-template-rows: auto 70vh auto auto;
     }
 }
 
@@ -206,16 +208,20 @@ li.vertical-menu-item:hover{
 
 .logos-redes{
     padding: 5px;
+    
     display:flex;
     flex-direction: column;
     align-items: center;
+    
     margin-top:auto;
     margin-bottom: 20px;
+    
+    overflow:hidden;
 }
 
 .logo-red {
-    height: 100px;
-    width: 100px;
+    height: auto;
+    width: 10vh;
     padding: 10px;
     border-radius: 20px;
 }
