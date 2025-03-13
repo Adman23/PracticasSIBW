@@ -14,7 +14,7 @@ body{
     height:100vh;
     
     
-    font-size: 1.15rem; /* Esto multiplica por 1.15 por 16px*/
+    font-size: 1.15rem; /* Esto multiplica por 1.15 por 16px */
     font-family: system-ui, sans-serif, serif;
     
 }
@@ -43,7 +43,6 @@ body{
         grid-template-rows: auto 70vh auto auto;
     }
 }
-
 
 header {
     background-color: #121110;
@@ -143,7 +142,6 @@ ul.horizontal-menu {
 
 }
 
-
 li.horizontal-menu-item {
     display: flex;
     align-items: center;   
@@ -151,7 +149,6 @@ li.horizontal-menu-item {
     padding-left: 15px;
     padding-right: 15px;
 }
-
 
 li.horizontal-menu-item:hover{
     background-color: lightslategray;
@@ -200,6 +197,7 @@ li.vertical-menu-item:hover{
     flex-grow: 0;
     
 }
+
 .logo {
     width:50px;
     height:50px;
@@ -243,7 +241,6 @@ li.vertical-menu-item:hover{
     font-size: 3.8vw;
 }
 
-
 h2.title{
     padding:5px;
     text-align:center;
@@ -252,7 +249,6 @@ h2.title{
     font-size:1.75rem;
     margin-bottom: 35px;
 }
-
 
 footer p {
     margin-top: 3px;

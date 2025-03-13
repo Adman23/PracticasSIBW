@@ -44,7 +44,6 @@ body{
     }
 }
 
-
 header {
     background-color: #121110;
     border-radius: 10px;
@@ -105,6 +104,7 @@ aside.sidebar {
 
 
 
+
 /*----------------------------------------------------------------------------*/
 /* Menús y listas */
 
@@ -142,7 +142,6 @@ ul.horizontal-menu {
 
 }
 
-
 li.horizontal-menu-item {
     display: flex;
     align-items: center;   
@@ -150,7 +149,6 @@ li.horizontal-menu-item {
     padding-left: 15px;
     padding-right: 15px;
 }
-
 
 li.horizontal-menu-item:hover{
     background-color: lightslategray;
@@ -161,6 +159,7 @@ a.menu-link {
     text-decoration: none;
     color: white;
 }
+
 
 
 
@@ -191,6 +190,8 @@ li.vertical-menu-item:hover{
     background-color: #3366ff;
 }
 
+
+
 /*----------------------------------------------------------------------------*/
 /* Imagenes, logos*/
 
@@ -199,6 +200,7 @@ li.vertical-menu-item:hover{
     flex-grow: 0;
     
 }
+
 .logo {
     width:50px;
     height:50px;
@@ -242,7 +244,6 @@ li.vertical-menu-item:hover{
     font-size: 3.8vw;
 }
 
-
 h2.title{
     padding:5px;
     text-align:center;
@@ -251,7 +252,6 @@ h2.title{
     font-size:1.75rem;
     margin-bottom: 35px;
 }
-
 
 footer p {
     margin-top: 3px;
@@ -287,18 +287,10 @@ main .information{
     grid-area: information;
 }
 
-.information-block h2 {
-    
+.information p {
+    line-height: 1.6;
+    text-wrap: wrap;
 }
-
-.information-block h3 {
-    
-}
-
-.information-block p {
-    
-}
-
 
 .main-image-block {
     display:flex;
@@ -313,6 +305,8 @@ main .information{
     border-radius: 20px;
     border: 1px solid rgb(60,65,73);
     padding:20px;
+    margin-left:20px;
+    
 }
 
 .caratula{
@@ -320,24 +314,18 @@ main .information{
     flex-shrink: 0;
 }
 
-
-
-
 #description-title{
     padding: 25px;
     padding-top: 0;
     padding-bottom: 0;
 }
+
 main .sipnosis{
     font-size:0.9rem;
     text-align:justify;
     padding:25px;
     padding-top: 0;
 }
-
-
-
-
 
 
 
@@ -354,7 +342,6 @@ main .film-image-blocks {
     
 }
 
-
 .image-block{
     display:flex;
     flex-direction: column;
@@ -368,14 +355,11 @@ main .film-image-blocks {
     padding:20px;
 }
 
-
 .film-image {
     width: 200px;
     height: 130px;
     flex-shrink: 0;
 }
-
-
 
 .image-footer{
     width: 200px;
@@ -383,7 +367,6 @@ main .film-image-blocks {
     margin:0;
     padding-top: 10px;
 }
-
 
 
 
@@ -412,4 +395,27 @@ main .film-footer {
     height: 70px;
     width: auto;
     border-radius: 10px;
+}
+
+.button{
+    
+    background-color: #373b41;
+    color:white;
+    border: 2px solid black;
+    text-align: center;
+    padding: 1em 1.5em;
+    font-size: 1.23rem;
+    border-radius: 10px;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 3px 3px 8px 0 #000000;
+    
+}
+
+.button:hover{
+    opacity:0.10;
+    border: 2px solid white;
+    background-color:#74777c;
+    color: white;
+    cursor: grab;
 }
