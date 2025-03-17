@@ -13,6 +13,10 @@ main .film-footer, main .film-image-blocks {
 @media screen and (max-width:900px){}
 @media screen and (min-width:900px){}
 
+.logo:hover{
+    opacity:1;
+    cursor:default;
+}
 .logo-imprimir {
     display:block;
     padding:20px;
