@@ -52,8 +52,12 @@ body{
 
 header {
     background-color: #121110;
+    background-image: url("../images/Fondo1.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
     border-radius: 10px;
-    border: 1px solid rgb(60,65,73);
+    border: 1px solid rgb(84, 89, 99);
     
     grid-area: header;
     
@@ -65,8 +69,12 @@ header {
 
 main{
     padding: 5px;
-    border: 1px solid rgb(60,65,73);
+    border: 1px solid rgb(84, 89, 99);
     background-color: #121110;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url("../images/Fondo3.jpg");
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     overflow-y: auto;
     
@@ -76,8 +84,12 @@ main{
 
 footer{
     padding: 5px;
-    border: 1px solid rgb(60,65,73);
-    background-color: #121110;
+    border: 1px solid rgb(84, 89, 99);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url("../images/Fondo2.jpg");
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
     border-radius: 10px;
     
     text-align: center;
@@ -86,8 +98,12 @@ footer{
 }
 
 aside.sidebar {
-    border: 1px solid rgb(75,82,92);
-    background-color: #121110;
+    border: 1px solid rgb(84, 89, 99);
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url("../images/Fondo3.jpg");
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;    
     
     grid-area: aside;
@@ -126,17 +142,17 @@ nav.header-menu {
 }
 
 ul.horizontal-menu {
-  list-style-type: none; 
-  font-size: 1.30rem;
-  margin: 0;
-  padding: 0;
-  height:50px;
-  
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  
-  overflow:hidden;
+    list-style-type: none; 
+    font-size: 1.30rem;
+    margin: 0;
+    padding: 0;
+    height:50px;
+    
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    overflow:hidden;
 
 }
 

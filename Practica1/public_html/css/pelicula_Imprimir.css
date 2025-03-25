@@ -5,6 +5,7 @@
 */
 
 
+
 header, aside.sidebar {display: none;}
 
 main .film-footer, main .film-image-blocks {
@@ -46,10 +47,12 @@ body {
 main{
     margin:20px;
     background-color: white;
+    background-image: none;
 }
 footer{
     margin:20px;
     margin-bottom: 30px;
     background-color: white;
+    background-image: none;
 }
 

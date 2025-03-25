@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../css/general.css"> 
         <link rel="stylesheet" href="../css/pelicula.css"> 
         <link rel="icon" href="../images/logo.png" title="favicon">
+        <script src="../script/showMenu.js" defer></script>
     </head>
     <body>
         <header>
@@ -93,9 +94,11 @@
             </div>
             
             
+
             <!-- Descripción de la pelicula -->
             
             <h3 id="description-title">Descripción de la película: </h3>
+
             
             <p class="sipnosis">
                 
@@ -138,14 +141,26 @@
                 <div><a href="https://www.instagram.com/"> <img class="logo-red-main" src="../images/instagram.png" alt="instagram"></a></div>
                 <div><a href="https://x.com/home"> <img class="logo-red-main" src="../images/twitter.png" alt="twitter"></a>    </div>
                 
-                
+                <button class="button" onclick="showMenu()">Comentarios</button>
                 <a class="button" href="../html/pelicula_imprimir.html">Imprimir</a>
                 <a class="button" href="https://www.youtube.com/watch?v=OM0tSTEQCQA">Ver trailer</a>
-                
                 
             </div>
             
         </main>
+
+        <aside class="comment-menu">
+            
+            <h2 class="title">Enlaces</h2>
+            <nav>       
+                <ul class="side-menu">
+                    <li class="vertical-menu-item"> <a class="menu-link" href="../portada.html">Enlace1</a> </li>
+                    <li class="vertical-menu-item"> <a class="menu-link" href="../portada.html">Enlace2</a> </li>
+                    <li class="vertical-menu-item"> <a class="menu-link" href="../portada.html">Enlace3</a> </li>
+                </ul>
+            </nav>
+
+        </aside>
         
         <footer>
             <h2>Práctica 1 sistemas de información web</h2>
