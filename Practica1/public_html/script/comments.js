@@ -76,6 +76,7 @@ function validateComment(event)
         
         
         comment_list.push(new Comment(name+" "+email,new Date(), content));
+        postComment();
 
         form.reset();
     }
