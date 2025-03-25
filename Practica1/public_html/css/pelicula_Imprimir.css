@@ -8,9 +8,14 @@
 
 header, aside.sidebar {display: none;}
 
-main .film-footer, main .film-image-blocks {
+main .film-footer {
     display: none;
 }
+
+.film-image {
+    filter: grayscale(100%);
+}
+
 @media screen and (max-width:900px){}
 @media screen and (min-width:900px){}
 
@@ -46,6 +51,7 @@ body {
 
 main{
     margin:20px;
+    display: block;
     background-color: white;
     background-image: none;
 }

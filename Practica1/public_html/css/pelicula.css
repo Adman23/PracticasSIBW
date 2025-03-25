@@ -254,8 +254,6 @@ main {
 .comment-text {
     text-wrap: wrap;
     word-wrap: break-word;
-    width: 315px;
-
 }
 
 .comment-label {
