@@ -1,4 +1,25 @@
 
+const bad_words =  ["puta", "malparido", "desgraciado", "cabron", 
+                    "abrazafarolas", "baboso", "besugo", "capullo", 
+                    "caraflema", "cenutrio"];
+
+let fname = document.getElementById("fname");
+fname.addEventListener("keyup", function() {fname.value=checkBadWords(fname.value) })
+
+let femail = document.getElementById("femail");
+femail.addEventListener("keyup", function() {femail.value=checkBadWords(femail.value) })
+
+let fcontent = document.getElementById("fcontent");
+fcontent.addEventListener("keyup", function() {fcontent.value=checkBadWords(fcontent.value) })
+
+function checkBadWords(text)
+{   
+    for (bw in bad_words)
+        if(text.includes(bad_words[bw])){
+            text = text.replace(new RegExp(bad_words[bw], 'i'), '*'.repeat(bad_words[bw].length));
+        }
+    return text;
+}
 
 class Comment {
     constructor(autor, date, text)
@@ -36,8 +57,13 @@ function postComment()
     text = document.createElement("p");
 
     autor.textContent = "Autor: " + comment.autor;
-    date.textContent = "Fecha: " + comment.date.getDay();
+    date.textContent = `Fecha: ${comment.date.getDate()}-${comment.date.getMonth()}-${comment.date.getFullYear()}  
+                        Hora: ${comment.date.getHours()}:${comment.date.getMinutes()}:${comment.date.getSeconds()}`;
     text.textContent = comment.text;
+
+    autor.classList.add("comment-label");
+    date.classList.add("comment-label");
+    text.classList.add("comment-text");
 
     new_element.append(autor); 
     new_element.append(date); 
@@ -47,9 +73,9 @@ function postComment()
 
 }
 
-comment_list.push(new Comment("Pepe", new Date(2025, 1, 23, 13, 44, 3), "Película muy interesante"));
+comment_list.push(new Comment("Pepe  /  pepe@gmail.com", new Date(2025, 1, 23, 13, 44, 3), "Película muy interesante"));
 postComment();
-comment_list.push(new Comment("Pepa",new Date(2025, 1, 24, 10, 30), "Película poco interesante"));
+comment_list.push(new Comment("Pepa  /  pepa@gmail.com",new Date(2025, 1, 24, 10, 30), "Película poco interesante"));
 postComment();
 
 function validateComment(event)
@@ -75,7 +101,7 @@ function validateComment(event)
             throw new Error("Error: Es necesario que tenga algún contenido");
         
         
-        comment_list.push(new Comment(name+" "+email,new Date(), content));
+        comment_list.push(new Comment(name+"  /  "+email,new Date(), content));
         postComment();
 
         form.reset();

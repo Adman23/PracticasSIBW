@@ -156,15 +156,6 @@
                 <h2 class="title" id="comments-title">Comentarios</h2> 
                 <ul id="comment-list">
                     <!--Aqui se usa javascript para introducir los comentarios de clase "comment"-->
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
-                    <li class="comment">Comentario</li>
                 </ul>
 
                 <form id="comment-form" onsubmit="validateComment(event)">
@@ -173,7 +164,7 @@
                     <label for="femail">E-mail:</label>
                         <input type="text" id="femail" name="femail" size="25" maxlength="64"><br>
                     <label for="fcontent">Contenido:</label>
-                        <textarea id="fcontent" name="fcontent" rows="5" cols="40"></textarea>
+                        <textarea style="resize: none;" id="fcontent" name="fcontent" rows="5" cols="40" maxlength="200"></textarea>
                     
                     <p id="error-message"></p>
 

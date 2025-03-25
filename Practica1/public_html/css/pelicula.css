@@ -227,7 +227,10 @@ main {
 
 /*Para cada comentario, tener en cuenta que tiene tanto autor, fecha y hora y texto*/
 .comment {
-    margin:15px;
+    margin:5px;
+    border: 1px solid rgb(84, 89, 99);
+    border-radius: 10px;
+    padding:10px;
 }
 
 #comment-form {
@@ -246,4 +249,19 @@ main {
     color:red;
     padding:0;
     margin: 0;
+}
+
+.comment-text {
+    text-wrap: wrap;
+    word-wrap: break-word;
+    width: 315px;
+
+}
+
+.comment-label {
+    padding: 5px;
+    padding-left: 0px;
+    margin: 0px;
+    font-size:1.1rem;
+    font-weight: 600;
 }
