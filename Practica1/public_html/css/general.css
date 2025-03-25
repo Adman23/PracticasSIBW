@@ -25,7 +25,7 @@ body{
                         "aside header"
                         "aside main"
                         "aside footer";
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: 100px 1fr auto;
         overflow:hidden;
     }
 
@@ -44,7 +44,7 @@ body{
                         "main"
                         "aside"
                         "footer";
-        grid-template-rows: auto 70vh auto auto;
+        grid-template-rows: 100px 70vh auto auto;
     }
 
     header, main, footer, aside.sidebar {margin:0; margin:10px}
@@ -100,6 +100,7 @@ footer{
 aside.sidebar {
     border: 1px solid rgb(84, 89, 99);
 
+    /*Esto es para aplicarle la imagen pero oscurecerla un poco*/
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
     url("../images/Fondo3.jpg");
     background-size: cover;
@@ -185,7 +186,6 @@ ul.side-menu {
     margin:0;
     padding:0;
     width:100%;
-    
 }
 
 li.vertical-menu-item{
@@ -212,6 +212,7 @@ li.vertical-menu-item:hover{
 
 .logo-box{
     flex-grow: 0;
+    margin-left: 20px;
 }
 
 .logo {
