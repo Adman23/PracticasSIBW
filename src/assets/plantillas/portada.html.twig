@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{css_path}}/portada.css">
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <main> 
+        <ul class="film-list">
+            {% for film in films %}
+                <li class="film"><a href="{{base_path}}pelicula.php"> <img class="cover" src="data:image/jpg;base64,{{film.cover}}" alt="pelicula">
+                                                            <p class="film-name">{{film.name}}</p></a></li>
+            {% endfor %}
+        </ul>
+    </main>        
+{% endblock %}

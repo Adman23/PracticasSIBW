@@ -40,7 +40,7 @@ function showMenu()
 // Creamos los comentarios iniciales
 let comment_list = [];
 
-// Coloca en el html el ultimo comentario de la lista
+// Coloca en el plantillas el ultimo comentario de la lista
 function postComment()
 {
     comment = comment_list[comment_list.length-1];

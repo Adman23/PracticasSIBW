@@ -19,6 +19,8 @@ main .film-footer {
 @media screen and (max-width:900px){}
 @media screen and (min-width:900px){}
 
+
+
 .logo:hover{
     opacity:1;
     cursor:default;
@@ -60,5 +62,9 @@ footer{
     margin-bottom: 30px;
     background-color: white;
     background-image: none;
+}
+
+#comment-button {
+    display:none;
 }
 

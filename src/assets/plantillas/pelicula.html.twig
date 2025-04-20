@@ -1,68 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Pirated films</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/general.css"> 
-        <link rel="stylesheet" href="../css/pelicula.css"> 
-        <link rel="icon" href="../images/logo.png" title="favicon">
-        <script src="../js/comments.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <!-- Logo que mostraremos con enlace al index o portada-->
-            
-            <div class="logo-box"><a href="../../portada.html">
-                <img class="logo" src="../images/logo.png" title="Logo" alt="Logo de la página">
-            </a></div>
-            
-            
-            <div id="title-menu">
-                <h1 class="main-title">PIRATED FILMS</h1> 
+{% extends 'base.html.twig' %}
 
-                <nav class="header-menu">
-                    <ul class="horizontal-menu">
-                        <li class="horizontal-menu-item"> <a class="menu-link" 
-                                                        href="../../portada.html">Home</a> </li>
-                        <li class="horizontal-menu-item"> <a class="menu-link" 
-                                                        href="../../portada.html">Menu2</a> </li>
-                        <li class="horizontal-menu-item"> <a class="menu-link" 
-                                                        href="../../portada.html">Menu3</a> </li>
-                    </ul>
-                </nav>
-            </div>
-            
-        </header>
-        
-        <aside class="sidebar">
-            
-            <h2 class="title">Enlaces</h2>
-            <nav>       
-                <ul class="side-menu">
-                    <li class="vertical-menu-item"> <a class="menu-link" href="../../portada.html">Enlace1</a> </li>
-                    <li class="vertical-menu-item"> <a class="menu-link" href="../../portada.html">Enlace2</a> </li>
-                    <li class="vertical-menu-item"> <a class="menu-link" href="../../portada.html">Enlace3</a> </li>
-                </ul>
-            </nav>
-            
-            <div class="logos-redes">
-                <h2  class="title">Redes sociales</h2>
-                
-                <div><a href="https://www.instagram.com/"> <img class="logo-red"
-                                                                src="../images/instagram.png" alt="instagram"></a></div>
-                <div><a href="https://x.com/home"> <img class="logo-red"
-                                                        src="../images/twitter.png" alt="twitter"></a>    </div>
-                <div><a href="https://www.facebook.com/?locale=es_ES"> <img class="logo-red"
-                                                                            src="../images/facebook.png" alt="facebook"></a>  </div>
-            </div>
-        </aside>
-        
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{css_path}}/pelicula.css"> 
+    {% if css_print is not null %}
+        <link rel="stylesheet" href="{{css_path}}/{{css_print}}"> 
+    {% endif %}
+    <script src="{{js_path}}/comments.js" defer></script>
+{% endblock %}
+
+{% block content %}
+        {{ parent() }}
         <main> 
-            <section class="main-content">
-                <!-- Titulo de la pelicula e información inicial -->
+        <section class="main-content">
+            <!-- Titulo de la pelicula e información inicial -->
                 <div class="logo-imprimir">
-                    <img class="logo" src="../images/logo.png" title="Logo" alt="Logo de la página">
+                    <img class="logo" src="{{img_path}}/logo.png" title="Logo" alt="Logo de la página">
                 </div>
 
                 <div class="information-block">
@@ -73,7 +26,7 @@
                     -->
                     
                     <button class="button" id="comment-button" onclick="showMenu()">
-                        <img id="comment-img" src="../images/dialogue-box.png" title="menu" , alt="comments menu">
+                        <img id="comment-img" src="{{img_path}}/dialogue-box.png" title="menu" , alt="comments menu">
                     </button>
                     
                     <div class="information">
@@ -91,10 +44,10 @@
                 <!-- Bloque para las imagenes -->
                 <div class="film-image-blocks">
 
-                    <div class="image-block"><img class="film-image" src="../images/neo.jpeg" alt="Neo">
+                    <div class="image-block"><img class="film-image" src="{{img_path}}/neo.jpeg" alt="Neo">
                         <p class="image-footer">Neo</p></div>
 
-                    <div class="image-block"><img class="film-image" src="../images/letras%20verdes.jpeg" alt="green words">
+                    <div class="image-block"><img class="film-image" src="{{img_path}}/letras%20verdes.jpeg" alt="green words">
                         <p class="image-footer">Matrix</p></div>
                 </div>
                 
@@ -143,10 +96,10 @@
                 
                 <!-- Bloque con botones e imagenes con link -->
                 <div class="film-footer">
-                    <div><a href="https://www.instagram.com/"> <img class="logo-red-main" src="../images/instagram.png" alt="instagram"></a></div>
-                    <div><a href="https://x.com/home"> <img class="logo-red-main" src="../images/twitter.png" alt="twitter"></a>    </div>
+                    <div><a href="https://www.instagram.com/"> <img class="logo-red-main" src="{{img_path}}/instagram.png" alt="instagram"></a></div>
+                    <div><a href="https://x.com/home"> <img class="logo-red-main" src="{{img_path}}/twitter.png" alt="twitter"></a>    </div>
                     
-                    <a class="button" href="a_imprimir.html">Imprimir</a>
+                    <a class="button" href="?print=1">Imprimir</a>
                     <a class="button" href="https://www.youtube.com/watch?v=OM0tSTEQCQA">Ver trailer</a>
                 </div>
 
@@ -174,10 +127,4 @@
             
         </main>
 
-        <footer>
-            <h2>Práctica 1 sistemas de información web</h2>
-            <p>&copy; 2025 Adam Navarro Megías. Todos los derechos reservados.</p>
-        </footer>
-        
-    </body>
-</html>
+{% endblock %}

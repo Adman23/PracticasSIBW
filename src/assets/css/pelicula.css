@@ -19,28 +19,7 @@ main .information{
     line-height: 1.6;
     text-wrap: wrap;
 }
-/*
-.main-image-block {
-    display:flex;
-    flex-direction: column;
-    text-align: center;
-    
-    grid-area: image;
-    
-    width: 200px;
-    height: 250px;
-    
-    border-radius: 20px;
-    padding:20px;
-    margin-left:20px;
-    
-}
 
-.caratula{
-    height: 225px;
-    flex-shrink: 0;
-    border-radius: 20px;
-}*/
 
 #description-title{
     padding: 25px;
