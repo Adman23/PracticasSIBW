@@ -2,6 +2,12 @@
 /* Contenido de la página en el main */
 
 
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 /* Bloque inicial */
 main .information-block{
     padding:25px;
@@ -28,13 +34,16 @@ main .information{
 }
 
 main .sipnosis{
-    font-size:0.9rem;
     text-align:justify;
     padding:25px;
     padding-top: 0;
 }
 
 
+main .flex-row {
+    display: flex;
+    flex-direction: row;
+}
 
 
 /* Bloque para las imagenes del main al lado del texto */
@@ -42,32 +51,32 @@ main .film-image-blocks {
     display:flex;
     flex-direction: column;
     float:right;
-    gap: 50px;
+    gap: 20px;
     padding:25px;
-    margin-bottom: 20px;
+    max-height: 660px;
+    overflow-y: scroll;
+
+    mask-image: 
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+    linear-gradient(to top, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
 .image-block{
     display:flex;
     flex-direction: column;
     text-align: center;
-    
-    width: 200px;
-    height: 155px;
-    
-    
     padding:20px;
 }
 
 .film-image {
-    width: 200px;
-    height: 130px;
+    width: 220px;
+    height: 240px;
     flex-shrink: 0;
     border-radius: 20px;
 }
 
 .image-footer{
-    width: 200px;
+    width: 220px;
     height: 25px;  
     margin:0;
     padding-top: 10px;
@@ -80,19 +89,13 @@ main .film-image-blocks {
 main .film-footer {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
-    flex-shrink: 1;
     gap:5vw;
     
+    margin-top: auto;
 
     justify-content: center;
     align-items: center;
-    justify-items: center;
-    
-    height: 70px;
-    
-    padding-bottom: 20px;
-    
+    padding-bottom: 50px;    
 }
 
 .logo-red-main {
@@ -126,12 +129,6 @@ main .film-footer {
 }
 
 
-main {
-    display:flex;
-    flex-direction: row;
-}
-
-
 #comment-menu {
     /* De esta forma se carga la imagen de fondo desde el principio*/
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("../images/fondo4.avif");
@@ -157,6 +154,7 @@ main {
 .unactive-menu {
     /* Escondemos el menú */
     height: 0;
+    width: 0;
     overflow: hidden;
 }
 
@@ -167,7 +165,8 @@ main {
     border-radius: 10px;
 
 
-    height: 900px;
+    min-height: 900px;
+    width: 400px;
     overflow: visible;
     display: flex;
     flex-direction: column;

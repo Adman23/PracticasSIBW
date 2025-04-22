@@ -19,7 +19,10 @@ main .film-footer {
 @media screen and (max-width:900px){}
 @media screen and (min-width:900px){}
 
-
+main .film-image-blocks {
+    mask-image: none;
+    overflow-y: hidden;
+}
 
 .logo:hover{
     opacity:1;

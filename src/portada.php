@@ -11,13 +11,13 @@ foreach ($paths as $key => $value) {
 }
 
 
+// Conexión a base de datos-----------------------------------------------------------------------------
 $servername = "lamp-mysql8";
 $username = "root";
 $password = "tiger";
 $dbname = "SIBW";
 $port = 3306;
 
-// Código para extraer datos y variables
 
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
@@ -25,18 +25,39 @@ if ($conn->connect_error) {
 }
 
 
+
+// Código repetido con pelicula.php--------------------------------------------------------------------
+$sql_shared_images = "SELECT name, content FROM image WHERE type = 'background' OR type = 'other'";
+
+$result_shared_images = $conn->query($sql_shared_images);
+$shared_images = array();
+
+while($row_shared_images = $result_shared_images->fetch_assoc()){
+    array_push($shared_images, 
+            $shared_images[$row_shared_images['name']] = base64_encode($row_shared_images["content"]));
+}
+//------------------------------------------------------------------------------------------------------
+
+
+
+
 $films = null;
 
 // Para obtener el listado de peliculas
-$sql_films = "SELECT * FROM film";
+$sql_films = "SELECT id,name FROM film";
 
 // Para obtener la carátula de cada película
 $stmt = $conn->prepare("SELECT content FROM image WHERE image.film_id = ? AND image.type = 'cover'");
 $stmt->bind_param("i", $film_id);
 
+
+
+// Extraer resultado-----------------------------------------------------------------------------------
 $result = $conn->query($sql_films);
+
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+
         // Obtenemos la imagen
         $film_id = $row["id"];
         $stmt->execute();
@@ -45,12 +66,8 @@ if ($result->num_rows > 0) {
         
         // Sabemos que cover solo es una tupla, porque solo hay un image.type cover por film_id
         $films[] = array(
+            'id' => $row["id"],
             'name' => $row["name"],
-            'year' => $row["fecha"],
-            'genre' => ($row["genre"]),
-            'directors' => $row["directors"],
-            'actors' => $row["actors"],
-            'description' => $row["description"],
             'cover' => base64_encode($cover_row["content"]),
         );
     }
@@ -58,5 +75,5 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-echo $twig->render('portada.html.twig', ['films' => $films ?? null]);
+echo $twig->render('portada.html.twig', ['films' => $films ?? null, 'shared_images' => $shared_images ?? null]);
 ?>

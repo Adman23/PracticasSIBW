@@ -6,15 +6,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{css_path}}/general.css">
-        <link rel="icon" href="{{img_path}}/logo.png" title="favicon">
+        {% if shared_images['logo'] is not null %}
+            <link rel="icon" href="data:image/*;base64,{{ shared_images['logo'] }}" title="favicon">
+        {% endif %}
         {% endblock %}
     </head>
     <body>
         <header>
             <!-- Logo que mostraremos con enlace al index o portada-->
-            
             <div class="logo-box"><a href="{{base_path}}/portada.php">
-                <img class="logo" src="{{img_path}}/logo.png" title="Logo" alt="Logo de la página">
+            {% if shared_images['logo'] is not null %}
+                <img class="logo" src="data:image/*;base64,{{ shared_images['logo'] }}" title="Logo" alt="Logo de la página">
+            {% endif %}
             </a></div>
             
             
@@ -46,9 +49,9 @@
             <div class="logos-redes">
                 <h2  class="title">Redes sociales</h2>
                 
-                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="{{img_path}}/instagram.png" alt="instagram"></a></div>
-                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="{{img_path}}/twitter.png" alt="twitter"></a>    </div>
-                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="{{img_path}}/facebook.png" alt="facebook"></a>  </div>
+                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="data:image/*;base64,{{ shared_images['instagram'] }}" alt="instagram"></a></div>
+                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="data:image/*;base64,{{ shared_images['twitter'] }}" alt="twitter"></a>    </div>
+                <div><a href="{{base_path}}/portada.php"> <img class="logo-red" src="data:image/*;base64,{{ shared_images['facebook'] }}"></a>  </div>
             </div>
         </aside>
         
@@ -58,7 +61,6 @@
         <footer>
             <h2>Práctica 1 sistemas de información web</h2>
             <p>&copy; 2025 Adam Navarro Megías. Todos los derechos reservados.</p>
-            
         </footer>
         
     </body>
