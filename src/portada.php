@@ -11,6 +11,7 @@ foreach ($paths as $key => $value) {
 }
 
 
+// Código repetido con pelicula.php--------------------------------------------------------------------
 // Conexión a base de datos-----------------------------------------------------------------------------
 $servername = "lamp-mysql8";
 $username = "root";
@@ -25,8 +26,6 @@ if ($conn->connect_error) {
 }
 
 
-
-// Código repetido con pelicula.php--------------------------------------------------------------------
 $sql_shared_images = "SELECT name, content FROM image WHERE type = 'background' OR type = 'other'";
 
 $result_shared_images = $conn->query($sql_shared_images);

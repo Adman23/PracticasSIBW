@@ -20,6 +20,7 @@ if(isset($_GET['print'])) {
 
 
 
+// Código repetido con portada.php----------------------------------------------------------------------
 // Hacemos la conexión a la base de datos
 $servername = "lamp-mysql8";
 $username = "root";
@@ -27,14 +28,11 @@ $password = "tiger";
 $dbname = "SIBW";
 $port = 3306;
 
-// Código para extraer datos y variables
-
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Código repetido con portada.php----------------------------------------------------------------------
 $sql_shared_images = "SELECT name, content FROM image WHERE type = 'background' OR type = 'other'";
 
 $result_shared_images = $conn->query($sql_shared_images);

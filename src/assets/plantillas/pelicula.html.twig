@@ -9,10 +9,12 @@
     <script src="{{js_path}}/comments.js" defer></script>
 {% endblock %}
 
+
 {% block content %}
     {{ parent() }}
     <main> 
         <section class="flex-row">
+
             <section class="main-content">
                 <!-- Este logo no se muestra, es especial para la versión de impresión -->
                 <div class="logo-imprimir">
@@ -56,8 +58,6 @@
                 <h3 id="description-title">Descripción de la película: </h3>
                 <p class="sipnosis">{{film.description}}</p>
                 
-
-                
             </section>
 
             <!-- Bloque para el menú de comentarios -->
@@ -67,19 +67,20 @@
                     <!--Aqui se usa javascript para introducir los comentarios de clase "comment"-->
                 </ul>
 
-                <form id="comment-form" onsubmit="validateComment(event)">
+                <form id="comment-form"  method='POST' action='{{base_path}}/p_comment_form.php' >
                     <label for="fname">Nombre:</label>
-                        <input type="text" id="fname" name="fname" size="25" maxlength="64"><br>
+                        <input type="text" id="fname" name="fname" size="25" required><br>
                     <label for="femail">E-mail:</label>
-                        <input type="text" id="femail" name="femail" size="25" maxlength="64"><br>
+                        <input type="text" id="femail" name="femail" size="25" required><br>
                     <label for="fcontent">Contenido:</label>
-                        <textarea style="resize: none;" id="fcontent" name="fcontent" rows="5" cols="40" maxlength="200"></textarea>
+                        <textarea style="resize: none;" id="fcontent" name="fcontent" rows="5" cols="40" required></textarea>
                     
                     <p id="error-message"></p>
 
                     <input type="submit" value="Submit">
                 </form>
             </aside>
+
         </section>   <!-- Termina sección con pelicula y comentarios -->   
 
 
@@ -89,7 +90,6 @@
             <div><a href="https://x.com/home"> <img class="logo-red-main" src="data:image/*;base64,{{ shared_images['twitter'] }}" alt="twitter"></a>    </div>
                 
             <a class="button" href="?id={{film.id}}&print=1">Imprimir</a>
-            <a class="button" href="https://www.youtube.com/watch?v=OM0tSTEQCQA">Ver trailer</a>
         </div>
         
     </main>
