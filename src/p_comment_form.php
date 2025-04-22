@@ -26,12 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $film_id = $_GET['id'];
 
     $sql = "INSERT INTO comment(film_id, author, email, date, text) VALUES 
-            ($film_id, $femail, 'a@a.es', NOW(), 'hola')";
+        ($film_id,'$fname','$femail', NOW(), '$fcontent')";
 
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
 $conn->close();
+
+// Redirigimos a la misma página de la película    
+header("Location: pelicula.php?id=$film_id");
+
 ?>
