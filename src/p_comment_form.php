@@ -1,4 +1,12 @@
 <?php
+require_once '/usr/local/lib/php/vendor/autoload.php';
+$paths = require 'paths.php';
+
+
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__.$paths['templates_path']);
+$twig = new \Twig\Environment($loader);
+
+
 // Hacemos la conexión a la base de datos
 $servername = "lamp-mysql8";
 $username = "root";
@@ -11,26 +19,19 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-if ($_SERVER("REQUEST_METHOD") == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fname = $_POST["fname"];
     $femail = $_POST["femail"];
     $fcontent = $_POST["fcontent"];
     $film_id = $_GET['id'];
 
     $sql = "INSERT INTO comment(film_id, author, email, date, text) VALUES 
-            ($film_id, '$fname', '$femail', NOW(), '$fcontent')";
+            ($film_id, $femail, 'a@a.es', NOW(), 'hola')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Comentario enviado correctamente";
-    } else {
+    if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-} else {
-    echo "No se ha enviado el formulario.";
-}   
+}
 
 $conn->close();
-
-echo $twig->render('pelicula.html.twig', []);
-
 ?>

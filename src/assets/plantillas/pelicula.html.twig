@@ -67,7 +67,7 @@
                     <!--Aqui se usa javascript para introducir los comentarios de clase "comment"-->
                 </ul>
 
-                <form id="comment-form"  method='POST' action='{{base_path}}/p_comment_form.php' >
+                <form id="comment-form"  method='POST' action='{{base_path}}/p_comment_form.php?id={{film.id}}' onsubmit='validateComment(event)' >
                     <label for="fname">Nombre:</label>
                         <input type="text" id="fname" name="fname" size="25" required><br>
                     <label for="femail">E-mail:</label>
@@ -93,5 +93,4 @@
         </div>
         
     </main>
-
 {% endblock %}

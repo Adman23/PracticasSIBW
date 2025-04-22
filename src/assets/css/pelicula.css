@@ -53,7 +53,7 @@ main .film-image-blocks {
     float:right;
     gap: 20px;
     padding:25px;
-    max-height: 660px;
+    max-height: 610px;
     overflow-y: scroll;
 
     mask-image: 
