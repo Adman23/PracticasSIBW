@@ -18,6 +18,7 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+
 // Obtenemos el id
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -30,6 +31,23 @@ if (isset($_GET['id'])) {
     } 
 }
 
+
+// Esto solo lo hace si es post
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fname = $_POST["fname"];
+    $femail = $_POST["femail"];
+    $fcontent = $_POST["fcontent"];
+    $film_id = $id;
+
+    $sql = "INSERT INTO comment(film_id, author, email, date, text) VALUES 
+        ($film_id,'$fname','$femail', NOW(), '$fcontent')";
+
+    if ($conn->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Esto lo hace siempre
 // Para obtener los comentarios de la película (El resultado es una o más tuplas)
 $sql_comments = "SELECT author, email, date, text FROM comment WHERE film_id = $id";
 $result_comments    = $conn->query($sql_comments);
@@ -44,7 +62,7 @@ if ($result_comments->num_rows > 0) {
         );
     }
 } else {
-    $comments[] = array();
+    $comments = array();
 }
 
 $conn->close();
