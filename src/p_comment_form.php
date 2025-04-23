@@ -1,12 +1,4 @@
 <?php
-require_once '/usr/local/lib/php/vendor/autoload.php';
-$paths = require 'paths.php';
-
-
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__.$paths['templates_path']);
-$twig = new \Twig\Environment($loader);
-
-
 // Hacemos la conexión a la base de datos
 $servername = "lamp-mysql8";
 $username = "root";
@@ -31,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+}else {
+    echo "No se ha podido insertar el comentario";
 }
+
+
 $conn->close();
-
-// Redirigimos a la misma página de la película    
-header("Location: /pelicula/$film_id");
-
 ?>

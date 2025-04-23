@@ -61,19 +61,12 @@
             </section>
 
             <!-- Bloque para el menú de comentarios, se le pasa aqui como data-* el json de las palabras prohibidas con un filtro -->
-            <aside id="comment-menu" class="unactive-menu" data-prohibitedWords="{{prohibited_words|e('html_attr')}}">
+            <aside id="comment-menu" class="unactive-menu" data-prohibitedWords="{{prohibited_words|e('html_attr')}}" data-filmId="{{film.id_json}}">
                 <h2 class="title" id="comments-title">Comentarios</h2> 
                 <ul id="comment-list">
-                    {% for comment in comments %}
-                        <li class="comment">
-                            <p class="comment-label">Autor: {{comment.name}}  /  {{comment.email}}</p>
-                            <p class="comment-label">Fecha: {{comment.date}}</p> 
-                            <p class="comment-text">{{comment.text}}</p> 
-                        </li>
-                    {% endfor %}
                 </ul>
 
-                <form id="comment-form"  method='POST' action='{{base_path}}/p_comment_form.php?id={{film.id}}' >
+                <form id="comment-form"  method='POST' action='{{base_path}}/p_comment_form.php?id={{film.id}}'>
                     <label for="fname">Nombre:</label>
                         <input type="text" id="fname" name="fname" size="25" required><br>
                     <label for="femail">E-mail:</label>

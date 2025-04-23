@@ -10,6 +10,21 @@ let fcontent = document.getElementById("fcontent");
 fcontent.addEventListener("keyup", function() {fcontent.value=checkBadWords(fcontent.value) })
 
 
+// Se lanza cuando se carga la página entera para tener los comentarios
+document.addEventListener('DOMContentLoaded', function() {
+    let form = document.getElementById("comment-form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault(); // Evitar el envío del formulario por defecto        
+        if (validateComment(event)){
+            event.target.submit; // Enviamos el formulario al servidor de insertar
+            peticionAjax(); // Llamar a la función para enviar el comentario
+            event.target.reset(); // Limpiar el formulario después de enviar
+        }
+    })
+
+    peticionAjax(); // Llamar a la función para cargar los comentarios al inicio
+    console.log("Comentarios cargados");
+})
 
 // Definiciones-----------------------------------------------------------------------------------
 let menu = document.getElementById("comment-menu");
@@ -53,7 +68,7 @@ function validateComment(event)
         if(!content)
             throw new Error("Error: Es necesario que tenga algún contenido");
         
-        form.reset();
+        return true;
     }
     catch(error){
         console.error("Error de validación: ", error.message);
@@ -61,7 +76,57 @@ function validateComment(event)
     }
 }
 
+// Esta función gestiona la petición AJAX, es decir, utiliza el archivo
+// php para recoger datos de la base de datos
+function peticionAjax() {
+    // Obtenemos id de pelicula desde la plantilla
+    let commentsList = document.getElementById("comment-menu");
+    let id_json = commentsList.getAttribute("data-filmId");
+    let id = JSON.parse(id_json);
 
+    // Configuramos la solicitud AJAX
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", `/ajax_comment.php?id=${id}`, true);
 
+    // Lanzará función de procesado CUANDO SE COMPLETE 
+    xhr.onload = function() {
+        processComments(xhr.response);   
+    }
 
+    // Manda la solicitud
+    xhr.send();
+}
 
+// Esta función recibe la respuesta del servidor y coge el JSON con
+// los comentarios y lo pone en la lista de la  plantilla
+function processComments(response){
+
+    console.log("Comentarios recibidos: ", response);
+    let comments = JSON.parse(response);
+    let commentsList = document.getElementById("comment-list");
+    commentsList.innerHTML = "";
+
+    for (let i = 0; i < comments.length; i++) {
+        let comment = comments[i];
+        let li = document.createElement("li");
+        li.classList.add("comment");
+        
+        let author = document.createElement("p");
+        let date = document.createElement("p");
+        let text = document.createElement("p");
+        
+        author.classList.add("comment-label");
+        date.classList.add("comment-label");
+        text.classList.add("comment-text");
+
+        author.textContent = `${comment.author} / ${comment.email}`;
+        date.textContent = `${comment.date}`;
+        text.textContent = `${comment.text}`;
+
+        li.appendChild(author);
+        li.appendChild(date);
+        li.appendChild(text);
+
+        commentsList.appendChild(li);
+    }
+}

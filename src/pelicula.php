@@ -83,18 +83,15 @@ $sql_film = "SELECT * FROM film WHERE id = $id";
 // Para obtener las imágenes de la película (El resultado es una o más tuplas)
 $sql_images = "SELECT name, content FROM image WHERE film_id = $id";
 
-// Para obtener los comentarios de la película (El resultado es una o más tuplas)
-$sql_comments = "SELECT author, email, date, text FROM comment WHERE film_id = $id";
-
 $result             = $conn->query($sql_film);
 $result_images      = $conn->query($sql_images);
-$result_comments    = $conn->query($sql_comments);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     
     $film = array(
         'id' => $row["id"],
+        'id_json' => json_encode($row["id"]), // Para el js
         'name' => $row["name"],
         'year' => $row["fecha"],
         'genre' => $row["genre"],
@@ -108,15 +105,6 @@ if ($result->num_rows > 0) {
         $images[] = array(
             'name' => $row_images["name"] ?? null,
             'content' => base64_encode($row_images["content"]),
-        );
-    }
-
-    while($row_comments = $result_comments->fetch_assoc()){
-        $comments[] = array(
-            'author' => $row_comments["author"] ?? null,
-            'email' => $row_comments["email"] ?? null,
-            'date' => $row_comments["date"] ?? null,
-            'text' => $row_comments["text"] ?? null,
         );
     }
 }
@@ -152,6 +140,5 @@ echo $twig->render('pelicula.html.twig', ['css_print' => $css_print,
                                         'film' => $film ?? null,
                                         'images' => $images ?? null,
                                         'shared_images' => $shared_images ?? null, // Heredado del index.php
-                                        'comments' => $comments ?? null,
                                         'prohibited_words' => $prohibited_words_json ?? null,]);
 ?>
