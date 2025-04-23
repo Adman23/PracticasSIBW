@@ -3,8 +3,8 @@
 {% block head %}
     {{ parent() }}
     <link rel="stylesheet" href="{{css_path}}/pelicula.css"> 
-    {% if css_print is not null %}
-        <link rel="stylesheet" href="{{css_path}}/{{css_print}}"> 
+    {% if css_print %}
+        <link rel="stylesheet" href="{{css_path}}/pelicula_imprimir.css"> 
     {% endif %}
     <script src="{{js_path}}/comments.js" defer></script>
 {% endblock %}
@@ -95,7 +95,7 @@
             <div><a href="https://www.instagram.com/"> <img class="logo-red-main" src="data:image/*;base64,{{ shared_images['instagram'] }}" alt="instagram"></a></div>
             <div><a href="https://x.com/home"> <img class="logo-red-main" src="data:image/*;base64,{{ shared_images['twitter'] }}" alt="twitter"></a>    </div>
                 
-            <a class="button" href="?id={{film.id}}&print=1">Imprimir</a>
+            <a class="button" href="{{film.id}}/print">Imprimir</a>
         </div>
         
     </main>

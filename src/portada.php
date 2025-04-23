@@ -1,44 +1,17 @@
 <?php
-require_once '/usr/local/lib/php/vendor/autoload.php';
-$paths = require 'paths.php';
-
-
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__.$paths['templates_path']);
-$twig = new \Twig\Environment($loader);
-
-foreach ($paths as $key => $value) {
-    $twig->addGlobal($key, $value);
-}
-
-
-// Código repetido con pelicula.php--------------------------------------------------------------------
-// Conexión a base de datos-----------------------------------------------------------------------------
-$servername = "lamp-mysql8";
-$username = "root";
-$password = "tiger";
-$dbname = "SIBW";
-$port = 3306;
-
-
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
-
-$sql_shared_images = "SELECT name, content FROM image WHERE type = 'background' OR type = 'other'";
-
-$result_shared_images = $conn->query($sql_shared_images);
-$shared_images = array();
-
-while($row_shared_images = $result_shared_images->fetch_assoc()){
-    array_push($shared_images, 
-            $shared_images[$row_shared_images['name']] = base64_encode($row_shared_images["content"]));
-}
-//------------------------------------------------------------------------------------------------------
-
-
-
+/*
+Se tienen las siguientes variables relevantes:
+- variables de conexión
+    - $servername
+    - $username
+    - $password
+    - $dbname
+    - $port
+- $conn -> Tiene conexión abierta a la base de datos (hace falta cerrarla al final)
+- $shared_images -> array con las imagenes compartidas (logos y demás)
+- $page -> Página base en la que estamos
+- $tokens -> array con los elementos de la url, el 0 es $page
+*/
 
 $films = null;
 
@@ -48,7 +21,6 @@ $sql_films = "SELECT id,name FROM film";
 // Para obtener la carátula de cada película
 $stmt = $conn->prepare("SELECT content FROM image WHERE image.film_id = ? AND image.type = 'cover'");
 $stmt->bind_param("i", $film_id);
-
 
 
 // Extraer resultado-----------------------------------------------------------------------------------

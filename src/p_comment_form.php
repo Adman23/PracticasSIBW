@@ -35,6 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 
 // Redirigimos a la misma página de la película    
-header("Location: pelicula.php?id=$film_id");
+header("Location: /pelicula/$film_id");
 
 ?>

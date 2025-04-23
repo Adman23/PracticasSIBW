@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Si el archivo o directorio solicitado existe, no reescribir la URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Todo pasa por index.php que es el controlador
+RewriteRule ^(.*)$ index.php [QSA,L]

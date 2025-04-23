@@ -10,7 +10,7 @@
     <main> 
         <ul class="film-list">
             {% for film in films %}
-                <li class="film"><a href="{{base_path}}pelicula.php?id={{film.id}}"> <img class="cover" src="data:image/*;base64,{{film.cover}}" alt="pelicula">
+                <li class="film"><a href="/pelicula/{{film.id}}"> <img class="cover" src="data:image/*;base64,{{film.cover}}" alt="pelicula">
                                                             <p class="film-name">{{film.name}}</p></a></li>
             {% endfor %}
         </ul>
