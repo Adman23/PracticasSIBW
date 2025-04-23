@@ -1,4 +1,11 @@
 <?php
+
+// Función que modifica la url (sacada de stackoverflow)
+function set_url( $url )
+{
+    echo("<script>history.replaceState({},'','$url');</script>");
+}
+
 // Cargamos lo necesario para el uso de Twig
 require_once '/usr/local/lib/php/vendor/autoload.php';
 
@@ -44,6 +51,7 @@ $page = $tokens[0]; // Obtenemos la página base (siempre será portada o alguna
 
 if (!isset($page) || $page == '') {
     $page = 'portada'; // Si no hay nada, por defecto es portada
+    set_url('/portada'); // Cambiamos la url para que no se vea el localhost
 } 
 
 $valid_pages = ['portada', 'pelicula']; // Páginas válidas
