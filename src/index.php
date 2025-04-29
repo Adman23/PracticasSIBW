@@ -12,8 +12,8 @@ require_once '/usr/local/lib/php/vendor/autoload.php';
 // Configuramos variables básicas de la aplicación
 $paths = require 'paths.php';
 $servername = "lamp-mysql8";
-$username = "root";
-$password = "tiger";
+$username = "adam"; // alternativa root
+$password = "navarro"; // alternativa tiger
 $dbname = "SIBW";
 $port = 3306;
 
