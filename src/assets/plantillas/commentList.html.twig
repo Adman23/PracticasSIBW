@@ -1,0 +1,23 @@
+{% extends 'list.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <script src="{{js_path}}/comments.js" defer></script>
+{% endblock %}
+
+{% block list_section %}
+    <div class="row-list">
+        <p class="header">Id</p>
+        <p class="header">Id película</p>
+        <p class="header">Película</p>
+        <p class="header">Usuario</p>
+        <p class="header">Fecha</p>
+        <p class="header">Contenido</p>
+    </div>
+    <section id="comment-menu"  data-user="{{user_json|e('html_attr')}}"
+                                data-prohibitedWords="{{prohibited_words|e('html_attr')}}" 
+                                data-filmId="{{film.id_json|e('html_attr')}}">
+        <ul id="comment-list">
+        </ul>
+    </section>
+{% endblock %}

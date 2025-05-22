@@ -4,6 +4,8 @@
 // usa el script
 header('Content-Type: application/json');
 
+require_once 'bdUtils.php'; // Para usuarios
+
 // Configuramos variables básicas de la aplicación
 $paths = require 'paths.php';
 $servername = "lamp-mysql8";
@@ -26,40 +28,159 @@ if (isset($_GET['id'])) {
     if ($id === false) {
         http_response_code(404); // Establece el código de estado HTTP 404
         echo "<h1>Error 404: Algún problema con consulta AJAX</h1>";
-        echo "<p>Lo sentimos, la página que buscas no existe.</p>";
+        echo "<p>Lo sentimos, la página que buscas no existe 1.</p>";
         exit();
     } 
 }
 
-
-// Esto solo lo hace si es post
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fname = $_POST["fname"];
-    $femail = $_POST["femail"];
-    $fcontent = $_POST["fcontent"];
-    $film_id = $id;
-
-    $sql = "INSERT INTO comment(film_id, author, email, date, text) VALUES 
-        ($film_id,'$fname','$femail', NOW(), '$fcontent')";
-
-    if ($conn->query($sql) === FALSE) {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+if (isset($_GET['order'])) {
+    $order = $_GET['order'];
+    if (!in_array($order, ['insert', 'edit', 'delete'])) {
+        http_response_code(404); // Establece el código de estado HTTP 404
+        echo "<h1>Error 404: Algún problema con consulta AJAX</h1>";
+        echo "<p>Lo sentimos, la página que buscas no existe 2.</p>";
+        exit();
     }
+} else {
+    $order = null;
 }
+
+if (isset($_GET['getAll'])){
+    $getAll = $_GET['getAll'];
+} else {
+    $getAll = false;
+}
+
+session_start(); 
+// Obtenemos el usuario
+if (!isset($_SESSION['username'])) {
+    $user = null;                                          // Si no hay usuario, lo inicializamos a null
+} else {
+    $user = $_SESSION['username']; // Si hay usuario lo obtenemos
+}
+
+
+// Tanto editar como borrar un comentario necesitan el id del comentario
+
+// METER UN COMENTARIO NUEVO
+try {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $order == 'insert') {
+        $fcontent = $_POST["fcontent"];
+        $film_id = $id;
+
+        $sql = "INSERT INTO comment(film_id, author, date, text) VALUES 
+            ($film_id,'$user', NOW(), '$fcontent')";
+
+        if ($conn->query($sql) === FALSE) {
+            throw new Exception($conn->error);
+        }
+    }
+} catch (Exception $e) {
+    echo json_encode([
+        "error" => $e->getMessage(),
+        "order" => $order,
+    ]);
+    exit();
+}
+
+// EDITAR UN COMENTARIO EXISTENTE
+try {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $order == 'edit') {
+        $fcontent = $_POST["fcontent"];
+        $commentId = $_GET['commentId'] ?? null;
+        
+        $sql = "UPDATE comment SET text = '$fcontent', edited=1 WHERE id = $commentId";
+
+        if ($conn->query($sql) === FALSE) {
+            throw new Exception($conn->error);
+        }
+    }
+} catch (Exception $e) {
+    echo json_encode([
+        "error" => $e->getMessage(),
+    ]);
+    exit();
+}
+
+
+// BORRAR UN COMENTARIO
+try {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && $order == 'delete') {
+        $commentId = $_GET['commentId'] ?? null;
+        $sql = "DELETE FROM comment WHERE id = $commentId";
+
+        if ($conn->query($sql) === FALSE) {
+            throw new Exception($conn->error);
+        }
+    }
+} catch (Exception $e) {
+    echo json_encode([
+        "error" => $e->getMessage(),
+    ]);
+    exit();
+}
+
+
+
+
 
 // Esto lo hace siempre
 // Para obtener los comentarios de la película (El resultado es una o más tuplas)
-$sql_comments = "SELECT author, email, date, text FROM comment WHERE film_id = $id";
-$result_comments    = $conn->query($sql_comments);
+if (!$getAll) {
+    $sql_comments = "SELECT id, author, date, text, edited FROM comment WHERE film_id = $id";
+}
+else{
+    $sql_comments = "SELECT comment.id AS comment_id, 
+                            comment.author, 
+                            comment.date, 
+                            comment.text, 
+                            comment.edited, 
+                            film.id AS film_id, 
+                            film.name AS film_name
+                            FROM comment 
+                            JOIN film ON comment.film_id = film.id 
+                            ORDER BY date DESC";
+}
+$result_comments = $conn->query($sql_comments);
+
 
 if ($result_comments->num_rows > 0) {
     while($row_comments = $result_comments->fetch_assoc()){
-        $comments[] = array(
-            'author' => $row_comments["author"] ?? null,
-            'email' => $row_comments["email"] ?? null,
-            'date' => $row_comments["date"] ?? null,
-            'text' => $row_comments["text"] ?? null,
-        );
+        $user_author = $row_comments["author"];
+        $email = null;
+
+        if ($user_author) {
+            $sql_email = "SELECT role,email FROM user WHERE username = '$user_author'";
+            $result_email = $conn->query($sql_email);
+            if ($result_email && $row_email = $result_email->fetch_assoc()) {
+                $email = $row_email['email'];
+                $role = $row_email['role'];
+            }
+        }
+        if ($getAll){
+            $comments[] = array(
+                'id' => $row_comments["comment_id"] ?? null,
+                'author' => $user_author ?? null,
+                'role' => $role ?? null,
+                'email' => $email ?? null,
+                'date' => $row_comments["date"] ?? null,
+                'text' => $row_comments["text"] ?? null,
+                'edited' => $row_comments["edited"] ?? null,
+                'film_id' => $row_comments["film_id"] ?? null,
+                'film_name' => $row_comments["film_name"] ?? null,        
+            );
+        }
+        else{
+            $comments[] = array(
+                'id' => $row_comments["id"] ?? null,
+                'author' => $user_author ?? null,
+                'role' => $role ?? null,
+                'email' => $email ?? null,
+                'date' => $row_comments["date"] ?? null,
+                'text' => $row_comments["text"] ?? null,
+                'edited' => $row_comments["edited"] ?? null,    
+            );
+        }
     }
 } else {
     $comments = array();

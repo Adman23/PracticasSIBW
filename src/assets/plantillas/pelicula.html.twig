@@ -61,23 +61,25 @@
             </section>
 
             <!-- Bloque para el menú de comentarios, se le pasa aqui como data-* el json de las palabras prohibidas con un filtro -->
-            <aside id="comment-menu" class="unactive-menu" data-prohibitedWords="{{prohibited_words|e('html_attr')}}" data-filmId="{{film.id_json}}">
+            <aside id="comment-menu" class="unactive-menu" data-user="{{user_json|e('html_attr')}}" 
+                                                    data-prohibitedWords="{{prohibited_words|e('html_attr')}}" 
+                                                    data-filmId="{{film.id_json|e('html_attr')}}">
                 <h2 class="title" id="comments-title">Comentarios</h2> 
                 <ul id="comment-list">
                 </ul>
+                    <form id="comment-form"  method='POST'>
+                        {% if user %}
+                        <label for="fcontent">Comentario:</label>
+                            <textarea style="resize: none;" id="fcontent" name="fcontent" rows="5" cols="40" required></textarea>
+                        
+                        <p class="error-message"></p>
 
-                <form id="comment-form"  method='POST'>
-                    <label for="fname">Nombre:</label>
-                        <input type="text" id="fname" name="fname" size="25" required><br>
-                    <label for="femail">E-mail:</label>
-                        <input type="text" id="femail" name="femail" size="25" required><br>
-                    <label for="fcontent">Contenido:</label>
-                        <textarea style="resize: none;" id="fcontent" name="fcontent" rows="5" cols="40" required></textarea>
-                    
-                    <p id="error-message"></p>
+                        <input class="button comment-button" type="submit" value="Submit">          
+                        {% else %}
+                            <p><a class="log-link" href="/logIn">Inicia sesión</a> para comentar</p>
+                        {% endif %}
+                    </form>
 
-                    <input type="submit" value="Submit">
-                </form>
             </aside>
 
         </section>   <!-- Termina sección con pelicula y comentarios -->   

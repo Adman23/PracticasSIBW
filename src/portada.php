@@ -7,10 +7,12 @@ Se tienen las siguientes variables relevantes:
     - $password
     - $dbname
     - $port
+    - $user
 - $conn -> Tiene conexión abierta a la base de datos (hace falta cerrarla al final)
 - $shared_images -> array con las imagenes compartidas (logos y demás)
 - $page -> Página base en la que estamos
 - $tokens -> array con los elementos de la url, el 0 es $page
+- $user -> Puede ser null o el usuario que ha iniciado sesión
 */
 
 $films = null;
@@ -46,5 +48,5 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-echo $twig->render('portada.html.twig', ['films' => $films ?? null, 'shared_images' => $shared_images ?? null]);
+echo $twig->render('portada.html.twig', ['user' => $user ?? null, 'films' => $films ?? null, 'shared_images' => $shared_images ?? null]);
 ?>

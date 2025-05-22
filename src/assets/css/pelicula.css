@@ -108,33 +108,12 @@ main .film-footer {
 
 .logo-red-main {
     display: block;
-    height: 70px;
-    width: auto;
+    width: 5vh;
+    height: auto;
     border-radius: 10px;
 }
 
-.button{
-    background-color: #373b41;
-    color:white;
 
-    border: 2px solid black;
-    text-align: center;
-    padding: 1rem 1.5rem;
-    font-size: 1.23rem;
-    border-radius: 10px;
-
-    display: inline-block;
-    text-decoration: none;
-    box-shadow: 3px 3px 8px 0 #000000;
-}
-
-.button:hover{
-    opacity:0.10;
-    border: 2px solid white;
-    background-color:#74777c;
-    color: white;
-    cursor: grab;
-}
 
 
 #comment-menu {
@@ -165,20 +144,20 @@ main .film-footer {
     width: 0;
     overflow: hidden;
 }
-
 .active-comments-menu {
     padding: 10px;
     margin: 20px;
     border: 2px solid rgb(84, 89, 99);
     border-radius: 10px;
 
-
-    min-height: 900px;
+    min-height: 200px;
+    max-height: 900px;
     width: 400px;
     overflow: visible;
     display: flex;
     flex-direction: column;
-    gap:20px;
+    gap: 20px;
+    height: auto;
 }
 
 
@@ -197,9 +176,7 @@ main .film-footer {
     border-radius: 10px;
 
     width: 350px;
-    height: 75%;
     overflow-y: scroll;
-    display:flex;
     flex-direction: column;
 }
 
@@ -210,6 +187,7 @@ main .film-footer {
 #comments-title {
     margin-bottom:5px;
 }
+
 
 /*Para cada comentario, tener en cuenta que tiene tanto autor, fecha y hora y texto*/
 .comment {
@@ -230,7 +208,7 @@ main .film-footer {
     background-position: center;
 }
 
-#error-message {
+.error-message {
     font-size: 0.9rem;
     color:red;
     padding:0;
@@ -240,12 +218,13 @@ main .film-footer {
 .comment-text {
     text-wrap: wrap;
     word-wrap: break-word;
+    font-size: 0.9rem;
 }
 
 .comment-label {
     padding: 5px;
     padding-left: 0px;
     margin: 0px;
-    font-size:1.1rem;
+    font-size:1rem;
     font-weight: 600;
 }

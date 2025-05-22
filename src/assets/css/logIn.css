@@ -1,0 +1,60 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 300px;
+    padding: 40px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+p.error {
+    text-align: center;
+    font-size: 1.1rem;
+    color: red;
+}
+form {
+    width: 100%;
+}
+
+form a {
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    margin-top: 10px;
+    width: 48%;
+}
+
+input {
+    padding: 0px;
+    border: none;
+    padding: 5px 0;
+    display: inline-block;
+    width: 50%;
+}
+
+.button {
+    display: block;
+    margin: 20px auto;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.log-link{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.user-info p {
+    font-size: 1.4rem;
+    margin: 10px 2px;
+}

@@ -26,9 +26,11 @@
 
                 <nav class="header-menu">
                     <ul class="horizontal-menu">
-                        <li class="horizontal-menu-item"> <a class="menu-link" href="/portada">Home</a> </li>
-                        <li class="horizontal-menu-item"> <a class="menu-link" href="/portada">Menu2</a> </li>
-                        <li class="horizontal-menu-item"> <a class="menu-link" href="/portada">Menu3</a> </li>
+                        <li class="horizontal-menu-item"> <a class="menu-link" href="/logIn">{% if user %}
+                                                                                                Your account ({{ user.role}})
+                                                                                            {% else %}
+                                                                                                Log In
+                                                                                            {% endif %}</a> </li>
                     </ul>
                 </nav>
             </div>
@@ -40,6 +42,12 @@
             <h2 class="title">Enlaces</h2>
             <nav>       
                 <ul class="side-menu">
+                    {% if user and user.role != 'registered' and user.role != 'moderator'%}
+                        <li class="vertical-menu-item"> <a class="menu-link" href="/filmList">Lista de películas</a> </li>
+                    {% endif %}
+                    {% if user and user.role != 'registered'%}
+                        <li class="vertical-menu-item"> <a class="menu-link" href="/commentList">Lista de comentarios</a> </li>
+                    {% endif %}
                     <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace1</a> </li>
                     <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace2</a> </li>
                     <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace3</a> </li>

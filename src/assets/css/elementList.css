@@ -1,0 +1,53 @@
+/* For comments */
+.row-list  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 20px;
+    border-bottom: 1px solid #ccc;
+    font-size:1.3rem;
+}
+.header{
+    text-align: center;
+}
+#comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+#comment-list .comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.comment a {
+    height: fit-content;
+    margin: 20px 0;
+}
+
+.comment .button-container {
+    flex-basis: 100%;
+    flex-shrink: 0;
+}
+
+.button-container .comment-button {
+    font-size: 1rem;
+    padding: 5px 10px;
+}
+
+
+
+main {
+    overflow-y: scroll; 
+}
+
+main::-webkit-scrollbar {
+    display: none;
+}

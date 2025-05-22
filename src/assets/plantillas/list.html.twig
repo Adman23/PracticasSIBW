@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+
+
+{% block head %}
+<!-- Esto simplemente sirve como referencia para las listas, se le pueden añadir
+cosas comunes a todas las listas -->
+    {{ parent() }}
+    <link rel="stylesheet" href="{{css_path}}/elementList.css">
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <main>
+        {% block before %}
+        {% endblock %}
+        <section class="list-section">
+            {% block list_section %}
+            {% endblock %}
+        </section>
+        {% block after %}
+        {% endblock %}
+    </main>
+{% endblock %}

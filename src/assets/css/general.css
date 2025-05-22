@@ -18,6 +18,52 @@ body{
     
 }
 
+a {
+    text-decoration: none;
+}
+a:link {
+    color: gray;
+}
+a:visited {
+    color: gray;
+}
+a:active {
+    color: #000;
+}
+a:focus {
+    color: #000;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.button{
+    background-color: #373b41;
+    color:white !important; 
+
+    border: 2px solid black;
+    padding: 1rem 1.5rem;
+    font-size: 1.23rem;
+    border-radius: 10px;
+
+    text-decoration: none;
+    box-shadow: 3px 3px 8px 0 #000000;
+}
+
+.button:hover{
+    opacity:0.10;
+    border: 2px solid white;
+    background-color:#74777c;
+    color: white;
+    cursor: grab;
+}
+
+.comment-button {
+    font-size : 0.8rem;
+    padding: 5px;
+    margin: 10px;
+}
+
 @media screen and (min-width:900px){
     body {
         grid-template-columns: 200px 1fr;
@@ -238,7 +284,7 @@ li.vertical-menu-item:hover{
 
 .logo-red {
     height: auto;
-    width: 10vh;
+    width: 5vh;
     padding: 10px;
     border-radius: 20px;
 }
