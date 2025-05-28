@@ -361,14 +361,13 @@ else{
         }
         else if ($tokens[2] == "delete"){
             // DELETE
-            if ($order == 'delete') {
-                $sql = "DELETE FROM film WHERE id = $id";
+            $sql = "DELETE FROM film WHERE id = $id";
 
-                if ($conn->query($sql) === FALSE) {
-                    throw new Exception($conn->error);
-                }
-                header("Location: /portada");
+            if ($conn->query($sql) === FALSE) {
+                throw new Exception($conn->error);
             }
+            header("Location: /portada");
+            exit();
         }
         else{
             $conn->close();
