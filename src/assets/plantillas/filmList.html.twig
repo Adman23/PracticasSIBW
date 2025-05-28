@@ -1,28 +1,31 @@
 {% extends 'list.html.twig' %}
 
+{% block before %}
+<form method="post" action="/peliculas" class="search-form">
+    <input type="text" name="q" placeholder="Buscar pelicula" value="{{ app.request.get('q')|default('') }}">
+    <button class="button comment-button" type="submit">Buscar</button>
+</form>
+{% endblock %}
+
 {% block list_section %}
-    <div class="row-list">
-        <p class="header">Id</p>
-        <p class="header">Nombre</p>
-        <p class="header">Género</p>
-        <p class="header">Dirección</p>
-        <p class="header">Actores</p>
+    <div class="list-row list-header">
+        <span class="list-cell">Id</span>
+        <span class="list-cell">Nombre</span>
+        <span class="list-cell">Género</span>
+        <span class="list-cell">Dirección</span>
+        <span class="list-cell">Actores</span>
     </div>
-    <ul class="film-list">
-        <!-- Esta será más o menos la estructura de cada elemento de la lista
-        <li class="film-list-item">
-            <div class="row-list">
-                <p class="element">element.id</p>
-                <p class="element">
-                    <a class="film-list-link" href="/pelicula/element.id">
-                        element.name
-                    </a>
-                </p>
-                <p class="element">element.genre</p>
-                <p class="element">element.directors</p>
-                <p class="element">element.actors</p>
-            </div>
-        </li>
-        -->
-    </ul>
+    <section id="film-menu">
+        <ul class="list">
+            {% for film in films%}
+                <li class="list-row">
+                    <span class="list-cell">{{film.id}}</span>
+                    <span class="list-cell"><a href="/pelicula/{{film.id}}">{{film.name}}</a></span>
+                    <span class="list-cell">{{film.genre}}</span>
+                    <span class="list-cell">{{film.directors}}</span>
+                    <span class="list-cell">{{film.actors}}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}

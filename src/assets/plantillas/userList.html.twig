@@ -1,0 +1,37 @@
+{% extends 'list.html.twig' %}
+
+{% block list_section %}
+    <div class="list-row list-header">
+        <span class="list-cell">Username</span>
+        <span class="list-cell">Email</span>
+        <span class="list-cell">Role</span>
+    </div>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</palabras>
+    {% endif %}
+    <section id="user-menu">
+        <ul class="list">
+            {% for user in users %}
+                <li class="list-row">
+                    <span class="list-cell">{{ user.username }}</span>
+                    <span class="list-cell">{{ user.email }}</span>
+                    <form method="post" action="/usuarios/{{ user.username }}">
+                        <label for="superuser-role">Superuser</label>
+                        <input type="radio" id="superuser-role" value="superuser" name="role" {% if user.role == "superuser" %}checked{% endif %}>
+                        
+                        <label for="manager-role">Manager</label>
+                        <input type="radio" id="manager-role" value="manager" name="role"{% if user.role == "manager" %}checked{% endif %}>
+                        
+                        <label for="moderator-role">Moderator</label>
+                        <input type="radio" id="moderator-role" value="moderator" name="role"{% if user.role == "moderator" %}checked{% endif %}>
+                        
+                        <label for="registered-role">Registered</label>
+                        <input type="radio" id="registered-role" value="registered" name="role"{% if user.role == "registered" %}checked{% endif %}>
+
+                        <button class="button comment-button" type="submit">Cambiar rol</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

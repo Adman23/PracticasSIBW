@@ -188,5 +188,23 @@ if ($result_comments->num_rows > 0) {
 
 $conn->close();
 
-echo json_encode($comments);
+
+$q = isset($_POST['q']) ? trim($_POST['q']) : '';
+$filtered_comments = [];
+
+
+if ($q !== '') {
+    foreach ($comments as $comment) {
+        if (
+            stripos($comment['text'], $q) !== false
+        ) {
+            $filtered_comments[] = $comment;
+        }
+    }
+} else {
+    $filtered_comments = $comments;
+}
+
+
+echo json_encode($filtered_comments);
 ?>

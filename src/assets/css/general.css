@@ -28,10 +28,10 @@ a:visited {
     color: gray;
 }
 a:active {
-    color: #000;
+    color:  red;
 }
 a:focus {
-    color: #000;
+    color:  red;
 }
 a:hover {
     text-decoration: underline;
@@ -51,10 +51,10 @@ a:hover {
 }
 
 .button:hover{
-    opacity:0.10;
+    opacity:0.60;
     border: 2px solid white;
     background-color:#74777c;
-    color: white;
+    color: white !important;
     cursor: grab;
 }
 

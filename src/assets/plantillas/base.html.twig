@@ -42,15 +42,17 @@
             <h2 class="title">Enlaces</h2>
             <nav>       
                 <ul class="side-menu">
+                    {% if user and user.role == 'superuser' %}
+                        <li class="vertical-menu-item"> <a class="menu-link" href="/usuarios">Lista de usuarios</a> </li>
+                    {% endif %}
                     {% if user and user.role != 'registered' and user.role != 'moderator'%}
-                        <li class="vertical-menu-item"> <a class="menu-link" href="/filmList">Lista de películas</a> </li>
+                        <li class="vertical-menu-item"> <a class="menu-link" href="/peliculas">Lista de películas</a> </li>
                     {% endif %}
                     {% if user and user.role != 'registered'%}
                         <li class="vertical-menu-item"> <a class="menu-link" href="/commentList">Lista de comentarios</a> </li>
                     {% endif %}
                     <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace1</a> </li>
                     <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace2</a> </li>
-                    <li class="vertical-menu-item"> <a class="menu-link" href="/portada">Enlace3</a> </li>
                 </ul>
             </nav>
             

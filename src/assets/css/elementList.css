@@ -1,49 +1,3 @@
-/* For comments */
-.row-list  {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 20px;
-    border-bottom: 1px solid #ccc;
-    font-size:1.3rem;
-}
-.header{
-    text-align: center;
-}
-#comment-list {
-    list-style: none;
-    padding: 0;
-}
-
-#comment-list .comment {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 5px 20px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-    flex-wrap: wrap;
-}
-
-.comment a {
-    height: fit-content;
-    margin: 20px 0;
-}
-
-.comment .button-container {
-    flex-basis: 100%;
-    flex-shrink: 0;
-}
-
-.button-container .comment-button {
-    font-size: 1rem;
-    padding: 5px 10px;
-}
-
-
-
 main {
     overflow-y: scroll; 
 }
@@ -51,3 +5,101 @@ main {
 main::-webkit-scrollbar {
     display: none;
 }
+
+
+
+/* Único de las cabeceras de la tabla*/
+.list-header {
+    font-weight: bold !important;
+    font-size:1.3rem !important;
+}
+
+/* Para todo el listado, prefiero gestionar el padding y el margin con los
+elementos para que se aplique uniforme y se vea mejor */
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* list row y comment es lo mismo, pero uso comment también porque para los comentarios
+que aparecen en dos partes estaba ya usando antes comment y es la clase que coloca el 
+js */
+.list-row, .comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 0 20px;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.1rem;
+    flex-wrap:nowrap;
+}
+
+.list-cell{
+    flex: 1 1 0; /*flex growm shrink y basis -> No tienen tamaños fijos, crecen en función
+                    del espacio disponible*/
+    padding: 8px; /* Sobre todo es separación superior e inferior*/
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button-container{
+    white-space: wrap;
+}
+
+/* Esto es para hacerlo responsive, en el momento que pase de 
+600px se muestran solo los dos primeros list cell, por eso a 
+partir del tercer list-cell se ponen el display a none*/
+@media (max-width: 600px) {
+    .list-row {
+        flex-wrap: wrap;
+    }
+    .list-cell {
+        flex: 1 1 50%;
+        max-width: 50%;
+        box-sizing: border-box;
+    }
+    .list-cell:nth-child(n+3) {
+        display: none;
+    }
+}
+
+
+
+/*Buscador*/
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto 1.5rem auto;
+    background: #23272b;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 1.5px solid #444950;
+    max-width: 400px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.search-form input[type="text"] {
+    background: #23272b;
+    color: #f1f1f1;
+    border: 1.5px solid #444950;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 0.75rem;
+    outline: none;
+    transition: border 0.2s;
+}
+.search-form input[type="text"]:focus {
+    border-color: #888c91;
+}
+
+
+
+
+

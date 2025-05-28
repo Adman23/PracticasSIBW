@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{css_path}}/logForm.css">
+{% endblock %}
+
+
+{% block content %}
+    {{ parent() }}
+    <main>
+        <div class="form-box">
+            <h2>Crear película</h2>
+            <form action="/pelicula/insert" method="post" enctype="multipart/form-data" required>
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="date">Año:</label>
+                <input type="number" id="date" name="date" min="1900" max="2100" required>
+
+                <label for="genre">Género:</label>
+                <input type="text" id="genre" name="genre" required>
+
+                <label for="directors">Directores:</label>
+                <input type="text" id="directors" name="directors" required>
+
+                <label for="actors">Actores:</label>
+                <input type="text" id="actors" name="actors" required>
+
+                <label for="hashtags">Hashtags:</label>
+                <input type="text" id="hashtags" name="hashtags" required>
+
+                <label for="cover">Portada:</label>
+                <input type="file" id="cover" name="cover" required>
+
+                <label for="images">Imágenes:</label>
+                <input type="file" id="images" name="images[]" multiple required>
+
+                <label for="description" >Descripción:</label>
+                <textarea type="text" id="description" name="description" rows="5" cols="40" required></textarea>
+
+                                    
+                {% for error in errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+                
+                <button class="button" type="submit">Crear</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

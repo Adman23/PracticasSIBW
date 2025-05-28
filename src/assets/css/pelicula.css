@@ -195,6 +195,7 @@ main .film-footer {
     border: 1px solid rgb(84, 89, 99);
     border-radius: 10px;
     padding:10px;
+    margin:10px;
 }
 
 #comment-form {

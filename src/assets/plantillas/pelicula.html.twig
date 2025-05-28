@@ -91,6 +91,10 @@
             <div><a href="https://x.com/home"> <img class="logo-red-main" src="data:image/*;base64,{{ shared_images['twitter'] }}" alt="twitter"></a>    </div>
                 
             <a class="button" href="{{film.id}}/print">Imprimir</a>
+            {% if user.role == "manager" or user.role == "superuser" %}
+                <a class="button" href="/pelicula/{{film.id}}/edit">Editar</a>
+                <a class="button" href="/pelicula/{{film.id}}/delete">Borrar</a>
+            {% endif %}
         </div>
         
     </main>

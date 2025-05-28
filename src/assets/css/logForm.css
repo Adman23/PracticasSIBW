@@ -4,7 +4,7 @@ main {
     align-items: center;
 }
 
-.login-box {
+.form-box {
     width: 300px;
     padding: 40px;
     margin: auto;
@@ -48,7 +48,7 @@ input {
     padding: 10px;
 }
 
-.log-link{
+.center-link{
     display: block;
     text-align: center;
     margin-top: 10px;

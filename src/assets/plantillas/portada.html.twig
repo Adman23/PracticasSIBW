@@ -9,6 +9,9 @@
     {{ parent() }}
     <main> 
         <ul class="film-list">
+            {% if user.role == "manager" or user.role == "superuser"%}
+                <li id="add-button-container" class ="film"><a  id="add-button" class="button" href="/pelicula/insert">+</a></li>
+            {% endif %}
             {% for film in films %}
                 <li class="film"><a href="/pelicula/{{film.id}}"> <img class="cover" src="data:image/*;base64,{{film.cover}}" alt="pelicula">
                                                             <p class="film-name">{{film.name}}</p></a></li>

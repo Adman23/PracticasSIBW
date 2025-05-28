@@ -2,14 +2,14 @@
 
 {% block head %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{css_path}}/logIn.css">
+    <link rel="stylesheet" href="{{css_path}}/logForm.css">
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
     <main> 
         {% if edit %}
-            <div class="login-box">
+            <div class="form-box">
                 <h2>Editar datos</h2>
                 <form action="/logEdit" method="post">
                     <label for="new_username">Usuario:</label>
@@ -50,12 +50,12 @@
                     {% endfor %}
                     
                     <button class="button" type="submit">Actualizar</button>
-                    <a class="log-link" href="/logIn">Cancelar</a>
+                    <a class="center-link" href="/logIn">Cancelar</a>
                 </form>
             </div>
         {% else %}
             {% if sing %}
-                <div class="login-box">
+                <div class="form-box">
                     <h2>Registrarse</h2>                
                     <form action="/signUp" method="post">
                         <label for="username">Usuario:</label>
@@ -75,12 +75,12 @@
                         {% endfor %}
                         
                         <button class="button" type="submit">Registrarse</button>
-                        <a class="log-link" href="/logIn">Iniciar sesión</a>
+                        <a class="center-link" href="/logIn">Iniciar sesión</a>
                     </form>
                 </div>
             {% else %}
                 {% if user %}
-                    <div class="login-box">
+                    <div class="form-box">
                         <h2>Bienvenido {{ user.username }}</h2>
                         <section class="user-info">
                             <!-- Mostramos los datos del usuario -->
@@ -89,12 +89,12 @@
                             <p><strong>Edad:      </strong> {{ user.age }}</p>
                             <p><strong>Rol:</strong> {{user.role}}</p>
 
-                            <a class="log-link" href="/logEdit"> Editar datos</a>
-                            <a class="log-link" href="/logOut"> Cerrar sesión</a>
+                            <a class="center-link" href="/logEdit"> Editar datos</a>
+                            <a class="center-link" href="/logOut"> Cerrar sesión</a>
                         </section>
                     </div>
                 {% else %}
-                    <div class="login-box">
+                    <div class="form-box">
                         <h2>Log In</h2>
                         <form action="/logIn" method="post">
                             <label for="username">Usuario:</label>
@@ -109,7 +109,7 @@
                             
                             <button class="button" type="submit">Entrar</button>
 
-                            <a class="log-link" href="/signUp">Registrarse</a>
+                            <a class="center-link" href="/signUp">Registrarse</a>
                         </form>
                     </div>
                 {% endif %}

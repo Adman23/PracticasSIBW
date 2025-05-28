@@ -76,8 +76,6 @@ if (!isset($page) || $page == '') {
 
 
 
-
-
 // Comenzamos la sesión del usuario en caso de que no esté iniciada
 /*
     El tamaño que tienen las cookies no suele ser muy grande, por lo que la estructura que 
@@ -94,7 +92,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 $log_pages = ['signUp', 'logOut', 'logEdit']; // Páginas que están asociadas a logIn
-$db_use_pages = ['portada', 'pelicula', 'logIn']; // Páginas válidas que usan la conexión a la base de datos
+$db_use_pages = ['portada', 'pelicula', 'logIn', 'peliculas', "usuarios"]; // Páginas válidas que usan la conexión a la base de datos
 $render_only_pages = ['filmList', 'commentList'];
 
 
