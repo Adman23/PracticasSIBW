@@ -112,8 +112,8 @@ function processFilms(response, type){
                 filmList.appendChild(li);
             }   
         }
-        else if (type === "glance"){ // Muestra solo las 4 más recientes
-            for (let i = 0; i < films.length && i < 4; i++) {
+        else if (type === "glance"){ // Muestra solo las 10 más recientes
+            for (let i = 0; i < films.length && i < 10; i++) {
                 const li = createFilmGlance(films[i]);
                 list.appendChild(li);
             }   

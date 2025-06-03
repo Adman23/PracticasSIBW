@@ -29,12 +29,18 @@
 
                 <label for="hashtags">Hashtags:</label>
                 <input type="text" id="hashtags" name="hashtags" required>
-
+                
+                <label for="is-released">Released</label>
+                <input type="radio" id="is-released" value=1 name="released" checked>
+                
+                <label for="is-not-released">Not released</label>
+                <input type="radio" id="is-not-released" value=0 name="released">
+                
                 <label for="cover">Portada:</label>
                 <input type="file" id="cover" name="cover" required>
 
                 <label for="images">Imágenes:</label>
-                <input type="file" id="images" name="images[]" multiple required>
+                <input type="file" id="images" name="images[]" multiple>
 
                 <label for="description" >Descripción:</label>
                 <textarea type="text" id="description" name="description" rows="5" cols="78" required></textarea>

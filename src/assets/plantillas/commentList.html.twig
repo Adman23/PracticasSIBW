@@ -7,7 +7,7 @@
 
 {% block before %}
 <form method="post" class="search-form">
-    <input type="text" id="q" name="q" placeholder="Buscar comentario" value="{{ app.request.get('q')|default('') }}">
+    <input class="result" type="text" id="q" name="q" placeholder="Buscar comentario" value="{{ app.request.get('q')|default('') }}">
 </form>
 {% endblock %}
 

@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 
 //-------------------------------------------------------------------------------------------
 // Obtenemos todas las películas
-$sql_films = "SELECT id, name, genre, directors, actors, description FROM film ORDER BY fecha DESC";
+$sql_films = "SELECT id, name, genre, directors, actors, description, released FROM film ORDER BY fecha DESC";
 $result_films = $conn->query($sql_films);
 
 // Para obtener la carátula de cada película
@@ -39,16 +39,20 @@ if ($result_films->num_rows > 0){
         $cover = $stmt->get_result();
         $cover_row = $cover->fetch_assoc();
 
-
-        $films[] = array(
-            'id' =>         $row["id"]          ?? null,
-            'name' =>       $row["name"]        ?? null,
-            'genre' =>      $row["genre"]       ?? null,
-            'directors' =>  $row["directors"]   ?? null,
-            'actors' =>     $row["actors"]      ?? null, 
-            'description' =>$row["description"] ?? null,
-            'cover' => base64_encode($cover_row["content"]),
-        );
+        if (    ($row["released"] == 0 && 
+                ($_POST['role'] == 'manager' or $_POST['role'] == "superuser")) ||
+                ($row["released"] > 0) ) {
+            $films[] = array(
+                'id' =>         $row["id"]          ?? null,
+                'name' =>      ($row["released"] != 0) ? $row["name"]??null : "*".$row['name']??null,    
+                'released' =>   $row["released"],    
+                'genre' =>      $row["genre"]       ?? null,
+                'directors' =>  $row["directors"]   ?? null,
+                'actors' =>     $row["actors"]      ?? null, 
+                'description' =>$row["description"] ?? null,
+                'cover' => base64_encode($cover_row["content"]),
+            );
+        }
     }
 }
 else{
@@ -62,14 +66,24 @@ else{
 $q = isset($_POST['q']) ? trim($_POST['q']) : '';
 $filtered_films = [];
 
+$onlyName = isset($_POST["onlyName"]) ? true : false;
+
 
 // Esto es para filtrarlas según el parámetro de búsqueda
 if ($q !== '') {
     foreach ($films as $film) {
-        if (
-            stripos($film['name'], $q) !== false
-        ) {
-            $filtered_films[] = $film;
+        if ($onlyName == true) {
+            if (stripos($film['name'], $q) !== false)
+            {
+                $filtered_films[] = $film;
+            }
+        }
+        else{
+            if (stripos($film['name'], $q) !== false ||
+                stripos($film['description'], $q) !== false) 
+            {
+                $filtered_films[] = $film;
+            }
         }
     }
 } else {

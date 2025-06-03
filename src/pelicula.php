@@ -51,16 +51,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         exit();
     }
 
-    if (isset($tokens[2])){
-        $edit = $tokens[2];
+    if ($insert != "insert"){
+        if (isset($tokens[2])){
+            $edit = $tokens[2];
+        }
+        else{
+            $conn->close();
+            http_response_code(404); // Establece el código de estado HTTP 404
+            echo "<h1>Error 404: Instrucción no es válida</h1>";
+            echo "<p>Lo sentimos, no has indicado instrucción.</p>";
+            exit();
+        }
     }
-    else{
-        $conn->close();
-        http_response_code(404); // Establece el código de estado HTTP 404
-        echo "<h1>Error 404: Instrucción no es válida</h1>";
-        echo "<p>Lo sentimos, no has indicado instrucción.</p>";
-        exit();
-    }
+    
 
     if (in_array($insert, ['insert', 'edit'])){
         $order = $insert;
@@ -87,11 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             $actors = $conn->real_escape_string($_POST['actors']);
             $description = $conn->real_escape_string($_POST['description']);
             $hashtags = $conn->real_escape_string($_POST['hashtags']);
+            $released = $_POST['released'];
 
 
             $sql = "INSERT INTO film
-            (name, fecha, genre, directors, actors, description, hashtags) VALUES
-                    ('$name', '$fecha', '$genre', '$directors', '$actors', '$description', '$hashtags')";
+            (name, fecha, genre, directors, actors, description, hashtags, released) VALUES
+                    ('$name', '$fecha', '$genre', '$directors', '$actors', '$description', '$hashtags', $released)";
 
             if ($conn->query($sql) === FALSE) {
                 throw new ExceptionInsert($conn->error);
@@ -105,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
                 
                 // $id es el film_id
-                $cover_name = $name . "_cover";
+                $cover_name = "cover";
                 $type = "cover";
                 $cover = file_get_contents($_FILES["cover"]["tmp_name"]); // Esto es el content
 
@@ -202,6 +206,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     $types .= 's';
                     $values[] = $_POST['hashtags'];
                 }
+                if (isset($_POST['released']) && $_POST['released'] !== '') {
+                    $fields[] = "released=?";
+                    $types .= 's';
+                    $values[] = $_POST['released'];
+                }
 
                 if (empty($fields)) {
                     throw new ExceptionEdit("No fields to update");
@@ -297,7 +306,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             throw new ExceptionInsert("No se ha podido borrar la película insertada y falló meter la imagen");
         }
         throw new ExceptionInsert($e->getMessage());
-        exit();
     }
     catch (ExceptionInsert $e) {
         $conn->close();
@@ -405,14 +413,14 @@ if ($result->num_rows > 0) {
     $film = array(
         'id' => $row["id"],
         'id_json' => json_encode($row["id"]), // Para el js
-        'name' => $row["name"],
+        'name' => ($row["released"] != 0 || $page=="editPelicula") ? $row["name"]??null : "*".$row['name']??null,
         'year' => $row["fecha"],
         'genre' => $row["genre"],
         'directors' => $row["directors"],
         'actors' => $row["actors"],
         'description' => $row["description"],
         'hashtags' => $row["hashtags"],
-        // Falta extraer las distintas imágenes
+        'released' => $row["released"],
     );
 
     while($row_images = $result_images->fetch_assoc()){

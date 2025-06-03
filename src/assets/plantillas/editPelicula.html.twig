@@ -29,9 +29,16 @@
                 <label for="hashtags">Hashtags:</label>
                 <input type="text" id="hashtags" name="hashtags" value="{{ film.hashtags }}">
 
-                <label for="description">Descripción:</label>
-                <textarea id="description" name="description" rows="5" cols="40">{{film.description}}</textarea>
+                <label for="is-released">Released</label>
+                <input type="radio" id="is-released" value=1 name="released" {% if film.released > 0 %} checked {% endif %}>
+                
+                <label for="is-not-released">Not released</label>
+                <input type="radio" id="is-not-released" value=0 name="released" {% if film.released == 0 %} checked {% endif %}>
 
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" rows="5" cols="78">{{film.description}}</textarea>
+
+                
 
                 <label>Portada actual:</label>
                 {% for image in images %}
