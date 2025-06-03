@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block before %}
-<form method="post" class="search-form">
+<form method="post" class="search-form" autocomplete="off">
     <input class="result" type="text" id="q" name="q" placeholder="Buscar comentario" value="{{ app.request.get('q')|default('') }}">
 </form>
 {% endblock %}

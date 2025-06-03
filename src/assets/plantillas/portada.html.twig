@@ -10,7 +10,7 @@
 {% block content %}
     {{ parent() }}
     <main> 
-        <form class="search-form">
+        <form class="search-form" autocomplete="off">
             <div class="search-box">
                 <input class="result" type="text" name="q" placeholder="Buscar pelicula" value="{{ app.request.get('q')|default('') }}">
             </div>
