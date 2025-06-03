@@ -1,5 +1,3 @@
-
-
 /*----------------------------------------------------------------------------*/
 /* Contenido de la página en el main */
 
@@ -44,7 +42,7 @@ p.film-name{
     height: 25px;
     margin:0;
     padding:0;
-    
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

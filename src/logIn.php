@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"  && ($sing || $edit)) {
     }
 
     if ($sing){
-        $state=singUp($username, $new_username, $password, $email, $role, $age, $conn);
+        $state=singUp($username, $password, $email, $role, $age, $conn);
     } else { // Se puede usar $_SESSION['username']
         if ($new_username == null || $new_username == '') {
             $new_username = $user_edit['username']; // Si no se ha cambiado el nombre de usuario, lo mantenemos

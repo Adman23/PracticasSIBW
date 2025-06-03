@@ -27,6 +27,7 @@ function getUser($username, $conn) {
 
 function checkLogin($username, $password, $conn){
     // Comprobamos si el usuario existe
+
     $sql_user = "SELECT * FROM user WHERE username = '$username'";
     $result = $conn->query($sql_user);
     if ($result->num_rows > 0) {
@@ -44,6 +45,7 @@ function checkLogin($username, $password, $conn){
 
 function singUp($username, $password, $email, $role, $age, $conn){
     // Comprobamos si el usuario ya existe
+    
     $sql_user = "SELECT * FROM user WHERE username = '$username'";
     $result = $conn->query($sql_user);
     if (!$role) {
