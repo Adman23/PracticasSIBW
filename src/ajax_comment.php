@@ -60,6 +60,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 
+
 // Tanto editar como borrar un comentario necesitan el id del comentario
 
 // METER UN COMENTARIO NUEVO

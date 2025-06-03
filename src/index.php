@@ -29,6 +29,7 @@ $twig = new \Twig\Environment($loader);
 foreach ($paths as $key => $value) {
     $twig->addGlobal($key, $value);
 }
+
 // Abrimos la conexión a la base de datos (Se hace todo y luego lo cierra el php especifico)
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
@@ -75,7 +76,6 @@ if (!isset($page) || $page == '') {
 }
 
 
-
 // Comenzamos la sesión del usuario en caso de que no esté iniciada
 /*
     El tamaño que tienen las cookies no suele ser muy grande, por lo que la estructura que 
@@ -92,8 +92,8 @@ if (!isset($_SESSION['username'])) {
 }
 
 $log_pages = ['signUp', 'logOut', 'logEdit']; // Páginas que están asociadas a logIn
-$db_use_pages = ['portada', 'pelicula', 'logIn', 'peliculas', "usuarios"]; // Páginas válidas que usan la conexión a la base de datos
-$render_only_pages = ['filmList', 'commentList'];
+$db_use_pages = ['pelicula', 'logIn', "usuarios"]; // Páginas válidas que usan la conexión a la base de datos
+$render_only_pages = ['commentList', 'peliculas', 'portada'];
 
 
 if (in_array($page, $log_pages)) {
@@ -113,7 +113,6 @@ if (in_array($page, $log_pages)) {
 
     $page = 'logIn'; // Si la página es de logIn, la redirigimos a logIn
 }
-
 
 
 if (in_array($page, $render_only_pages)) {

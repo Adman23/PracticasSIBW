@@ -2,20 +2,30 @@
 
 {% block head %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{css_path}}/portada.css">
+    <link rel="stylesheet" href="{{css_path}}/portada.css">  
+    <script>const currentPage = 'portada';</script>
+    <script src="{{js_path}}/films.js" defer></script>
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
     <main> 
+        <form class="search-form">
+            <div class="search-box">
+                <input class="result" type="text" name="q" placeholder="Buscar pelicula" value="{{ app.request.get('q')|default('') }}">
+            </div>
+
+            <input type="hidden" name="role" value={{user.role}}>
+            <button class="button comment-button" type="submit">Buscar</button>
+        </form>
+
+        <br>
+        <hr>
+
         <ul class="film-list">
             {% if user.role == "manager" or user.role == "superuser"%}
                 <li id="add-button-container" class ="film"><a  id="add-button" class="button" href="/pelicula/insert">+</a></li>
             {% endif %}
-            {% for film in films %}
-                <li class="film"><a href="/pelicula/{{film.id}}"> <img class="cover" src="data:image/*;base64,{{film.cover}}" alt="pelicula">
-                                                            <p class="film-name">{{film.name}}</p></a></li>
-            {% endfor %}
         </ul>
     </main>        
 {% endblock %}

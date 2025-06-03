@@ -1,0 +1,31 @@
+{% extends 'list.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <script>const currentPage = 'listado';</script>
+    <script src="{{js_path}}/films.js" defer></script>
+{% endblock %}
+
+{% block before %}
+<form method="post" action="/peliculas" class="search-form">
+    <div class="search-box">
+        <input class="result" type="text" name="q" placeholder="Buscar pelicula" value="{{ app.request.get('q')|default('') }}">
+    </div>
+    <input type="hidden" name="role" value={{user.role}}>
+    <button class="button comment-button" type="submit">Buscar</button>
+</form>
+{% endblock %}
+
+{% block list_section %}
+    <div class="list-row list-header">
+        <span class="list-cell">Id</span>
+        <span class="list-cell">Nombre</span>
+        <span class="list-cell">Género</span>
+        <span class="list-cell">Dirección</span>
+        <span class="list-cell">Actores</span>
+    </div>
+    <section id="film-menu">
+        <ul class="list film-list">
+        </ul>
+    </section>
+{% endblock %}
